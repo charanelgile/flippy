@@ -7,6 +7,8 @@ function CardGrid() {
 
   const [previous, setPrevious] = useState(-1);
 
+  const [gridDimensions, setGridDimensions] = useState("grid5x6");
+
   function check(current) {
     if (cards[current].id === cards[previous].id) {
       cards[current].stat = "correct";
@@ -37,7 +39,7 @@ function CardGrid() {
   }
 
   return (
-    <div className="container">
+    <div className={"divCardGrid " + gridDimensions}>
       {cards.map((item, index) => (
         <Card
           key={index}
