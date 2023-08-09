@@ -1,5 +1,6 @@
 import React from "react";
 import CardGrid from "./components/CardGrid";
+import "./styles/style.css";
 
 function App() {
   return (

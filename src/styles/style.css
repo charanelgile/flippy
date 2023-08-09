@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+@font-face {
+  font-family: "GAMERIA";
+  src: url("./GAMERIA.ttf") format("truetype");
+}
+
+body {
+  font-family: "GAMERIA" !important;
+  background-color: cadetblue;
+}

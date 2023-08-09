@@ -4,53 +4,33 @@ import { CardsContext } from "../contexts/CardsContext";
 
 function CardGrid() {
   const { cards, setCards } = useContext(CardsContext);
-  // const [items, setItems] = useState(
-  //   [
-  //     { id: 1, img: "/img/html.png", stat: "" },
-  //     { id: 1, img: "/img/html.png", stat: "" },
-  //     { id: 2, img: "/img/css.png", stat: "" },
-  //     { id: 2, img: "/img/css.png", stat: "" },
-  //     { id: 3, img: "/img/js.png", stat: "" },
-  //     { id: 3, img: "/img/js.png", stat: "" },
-  //     { id: 4, img: "/img/scss.png", stat: "" },
-  //     { id: 4, img: "/img/scss.png", stat: "" },
-  //     { id: 5, img: "/img/react.png", stat: "" },
-  //     { id: 5, img: "/img/react.png", stat: "" },
-  //     { id: 6, img: "/img/vue.png", stat: "" },
-  //     { id: 6, img: "/img/vue.png", stat: "" },
-  //     { id: 7, img: "/img/angular.png", stat: "" },
-  //     { id: 7, img: "/img/angular.png", stat: "" },
-  //     { id: 8, img: "/img/nodejs.png", stat: "" },
-  //     { id: 8, img: "/img/nodejs.png", stat: "" },
-  //   ].sort(() => Math.random() - 0.5)
-  // );
 
-  const [prev, setPrev] = useState(-1);
+  const [previous, setPrevious] = useState(-1);
 
   function check(current) {
-    if (cards[current].id === cards[prev].id) {
+    if (cards[current].id === cards[previous].id) {
       cards[current].stat = "correct";
-      cards[prev].stat = "correct";
+      cards[previous].stat = "correct";
       setCards([...cards]);
-      setPrev(-1);
+      setPrevious(-1);
     } else {
       cards[current].stat = "wrong";
-      cards[prev].stat = "wrong";
+      cards[previous].stat = "wrong";
       setCards([...cards]);
       setTimeout(() => {
         cards[current].stat = "";
-        cards[prev].stat = "";
+        cards[previous].stat = "";
         setCards([...cards]);
-        setPrev(-1);
+        setPrevious(-1);
       }, 1000);
     }
   }
 
   function handleClick(id) {
-    if (prev === -1) {
+    if (previous === -1) {
       cards[id].stat = "active";
       setCards([...cards]);
-      setPrev(id);
+      setPrevious(id);
     } else {
       check(id);
     }
