@@ -1,11 +1,10 @@
-// import React, {useState} from 'react';
 import './style.css'
-function SignUpForm() {
+function AdminSignUpForm() {
     return(
         
       <div className="form">
           <div className="form-body">
-          <h3>Sign up Form</h3>
+          <h3>Admin Sign Up Form</h3>
               <div className="username">
                   <label className="form__label" for="firstName">First Name: </label>
                   <input className="form__input" type="text" id="firstName" placeholder="First Name"/>
@@ -14,10 +13,7 @@ function SignUpForm() {
                   <label className="form__label" for="lastName">Last Name: </label>
                   <input  type="text" name="" id="lastName"  className="form__input"placeholder="LastName"/>
               </div>
-              <div className="codename">
-                  <label className="form__label" for="codeName">Code Name: </label>
-                  <input  type="text" name="" id="codeName"  className="form__input"placeholder="CodeName"/>
-              </div>
+            
               <div className="email">
                   <label className="form__label" for="email">Email: </label>
                   <input  type="email" id="email" className="form__input" placeholder="Email"/>
@@ -37,4 +33,4 @@ function SignUpForm() {
       </div>      
     )       
 }
-export default SignUpForm;
+export default AdminSignUpForm;
