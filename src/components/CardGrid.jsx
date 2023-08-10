@@ -7,7 +7,10 @@ function CardGrid() {
 
   const [previous, setPrevious] = useState(-1);
 
-  const [gridDimensions, setGridDimensions] = useState("grid5x6");
+  const [gridDimensions, setGridDimensions] = useState("grid4x4");
+
+  // Check kung anong value ng gridDimensions
+  // If 4x4, 16 total, divided by 2 = 8
 
   function check(current) {
     if (cards[current].id === cards[previous].id) {
