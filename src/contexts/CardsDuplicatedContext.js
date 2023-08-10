@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Context Object for Cards (Duplicated)
 export const CardsDuplicatedContext = React.createContext();
@@ -7,9 +7,15 @@ export const CardsDuplicatedContext = React.createContext();
 export const CardsDuplicatedContextProvider = ({ children }) => {
   // State Variable
   const [cardsDuplicated, setCardsDuplicated] = useState(
-    []
-    // .sort(() => Math.random() - 0.5)
+    localStorage.getItem("cardsDuplicated")
+      ? JSON.parse(localStorage.getItem("cardsDuplicated"))
+      : []
   );
+
+  // When component mounts, get data from the localStorage
+  useEffect(() => {
+    JSON.parse(localStorage.getItem("cardsDuplicated"));
+  }, []);
 
   return (
     <CardsDuplicatedContext.Provider
