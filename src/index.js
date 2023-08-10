@@ -6,12 +6,15 @@ import "./index.css";
 
 // Cards Context
 import { CardsContextProvider } from "./contexts/CardsContext";
+import { CardsDuplicatedContextProvider } from "./contexts/CardsDuplicatedContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <CardsContextProvider>
-      <App />
+      <CardsDuplicatedContextProvider>
+        <App />
+      </CardsDuplicatedContextProvider>
     </CardsContextProvider>
   </React.StrictMode>
 );
