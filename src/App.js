@@ -1,23 +1,29 @@
 import React from "react";
-import CardGrid from "./components/CardGrid";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/style.css";
-import  SignUpForm from './components/PlayerSignUp'
-import  SignInForm from './components/PlayerSignIn'
-import  AdminSignUpForm from './components/AdminSignUp'
-import  AdminSignInForm from './components/AdminSignIn'
+
+import Header from "./Header"
+import Login from "./pages/Login"
+import Home from "./pages/Home"
+import Ranking from "./pages/Ranking"
+import SignUp from "./components/PlayerSignUp";
+
 
 function App() {
   return (
+    <>
     <div className="App">
-      <h1>Flippy</h1>
-      <AdminSignInForm/>
-      <AdminSignUpForm/>
-      <SignInForm/>
-      <SignUpForm/>
-      <CardGrid />
-      
-      
+    <BrowserRouter>
+      <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/ranking" element={<Ranking />} />         
+          <Route path="/signup" element={<SignUp />} />         
+        </Routes>
+        </BrowserRouter>  
     </div>
+  </>
   );
 }
 
