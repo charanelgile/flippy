@@ -1,11 +1,12 @@
 .divCardGrid {
+  margin: 0 auto;
   display: grid;
   gap: 0.5em;
 }
 
 .grid3x4 {
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 
 .grid4x4 {
@@ -44,6 +45,7 @@
 }
 
 .card {
+  width: auto;
   background-color: #fff;
   display: flex;
   justify-content: center;
@@ -87,11 +89,11 @@
 }
 
 .card.correct {
-  background-color: #65e469;
+  border: 5px solid #65e469;
 }
 
 .card.wrong {
-  background-color: #fd245a;
+  border: 5px solid #fd245a;
 }
 
 .card.active img {

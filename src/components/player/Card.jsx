@@ -1,12 +1,12 @@
 import React from "react";
 
-function Card({ cardID, cardImage, cardStatus, handleClick }) {
-  const cardDynamicClass = cardStatus ? " active " + cardStatus : "";
+function Card({ cardID, cardImage, cardStatus, cardClick }) {
+  const cardFlag = cardStatus ? " active " + cardStatus : "";
 
   return (
     <div
-      className={"card " + cardDynamicClass}
-      onClick={() => handleClick(cardID)}>
+      className={"card" + cardFlag}
+      onClick={() => cardClick(cardID)}>
       <img
         src={cardImage}
         alt=""

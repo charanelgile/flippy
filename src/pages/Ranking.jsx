@@ -2,7 +2,7 @@ import React from "react";
 
 function Ranking() {
   return (
-    <div className="container">
+    <div>
       <h1>Ranking</h1>
     </div>
   );

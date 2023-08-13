@@ -7,20 +7,25 @@ function CardGrid() {
   const { cards } = useContext(CardsContext);
   const { duplicates, setDuplicates } = useContext(DuplicatesContext);
 
-  const [gridDimensions, setGridDimensions] = useState("grid3x4");
+  const [gridDimensions, setGridDimensions] = useState("grid6x8");
 
   const [previous, setPrevious] = useState(-1);
+
+  let gridWidth = "85%";
 
   const currentCardSet = [];
   let startingIndex = 0;
   let endingIndex = 0;
 
+  // Card Grid Generator (Dynamic)
   switch (gridDimensions) {
     // If "gridDimensions" = 4x4, the number of card pairs needed will be 8 making a grid of 16 cards
     // Randomly select a number between 1 to 49 and set as the starting index count
     // Limit is set to 49 so as not to exceed the 57 total cards (if in case 49 was selected and added by 8 - the number of card pairs needed)
     // The ending index count is equal to the starting index count added by the number of card pairs needed
     case "grid4x4":
+      gridWidth = "70%";
+
       startingIndex = Math.floor(Math.random() * (49 - 1) + 1);
       endingIndex = startingIndex + 8;
 
@@ -40,6 +45,8 @@ function CardGrid() {
     // Limit is set to 47 so as not to exceed the 57 total cards (if in case 47 was selected and added by 10 - the number of card pairs needed)
     // The ending index count is equal to the starting index count added by the number of card pairs needed
     case "grid4x5":
+      gridWidth = "85%";
+
       startingIndex = Math.floor(Math.random() * (47 - 1) + 1);
       endingIndex = startingIndex + 10;
 
@@ -59,6 +66,8 @@ function CardGrid() {
     // Limit is set to 45 so as not to exceed the 57 total cards (if in case 45 was selected and added by 12 - the number of card pairs needed)
     // The ending index count is equal to the starting index count added by the number of card pairs needed
     case "grid4x6":
+      gridWidth = "95%";
+
       startingIndex = Math.floor(Math.random() * (45 - 1) + 1);
       endingIndex = startingIndex + 12;
 
@@ -75,6 +84,8 @@ function CardGrid() {
       break;
     // Same logic until "gridDimensions" = 6x8
     case "grid5x6":
+      gridWidth = "75%";
+
       startingIndex = Math.floor(Math.random() * (42 - 1) + 1);
       endingIndex = startingIndex + 15;
 
@@ -89,6 +100,8 @@ function CardGrid() {
       localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     case "grid6x6":
+      gridWidth = "70%";
+
       startingIndex = Math.floor(Math.random() * (39 - 1) + 1);
       endingIndex = startingIndex + 18;
 
@@ -103,6 +116,8 @@ function CardGrid() {
       localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     case "grid6x7":
+      gridWidth = "75%";
+
       startingIndex = Math.floor(Math.random() * (36 - 1) + 1);
       endingIndex = startingIndex + 21;
 
@@ -117,6 +132,8 @@ function CardGrid() {
       localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     case "grid6x8":
+      gridWidth = "85%";
+
       startingIndex = Math.floor(Math.random() * (33 - 1) + 1);
       endingIndex = startingIndex + 24;
 
@@ -147,10 +164,8 @@ function CardGrid() {
       break;
   }
 
-  // console.log(currentCardSet);
-  // console.log(duplicates);
-
-  function statusCheck(current) {
+  // Card Tagger (Correct or Wrong)
+  function cardTag(current) {
     if (duplicates[current].id === duplicates[previous].id) {
       duplicates[current].stat = "correct";
       duplicates[previous].stat = "correct";
@@ -174,26 +189,29 @@ function CardGrid() {
     }
   }
 
-  function handleClick(id) {
+  // Card Click Handler
+  function cardClick(id) {
     if (previous === -1) {
-      duplicates[id].stat = "active";
+      duplicates[id].stat = "shown";
 
       setDuplicates([...duplicates]);
       setPrevious(id);
     } else {
-      statusCheck(id);
+      cardTag(id);
     }
   }
 
   return (
-    <div className={"divCardGrid " + gridDimensions}>
+    <div
+      className={"divCardGrid " + gridDimensions}
+      style={{ width: gridWidth }}>
       {duplicates.map((card, index) => (
         <Card
           key={index}
           cardID={index}
           cardImage={card.img}
           cardStatus={card.stat}
-          handleClick={handleClick}
+          cardClick={cardClick}
         />
       ))}
     </div>

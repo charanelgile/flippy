@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   background-color: rgb(45, 25, 35);
+  margin-bottom: 3rem;
 }
 
 .logo {

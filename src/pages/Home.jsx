@@ -3,8 +3,12 @@ import CardGrid from "../components/player/CardGrid";
 
 export default function Home() {
   return (
-    <div className="">
-      <CardGrid />
+    <div>
+      <div
+        id="containerCardGrid"
+        className="containerForComponents">
+        <CardGrid />
+      </div>
     </div>
   );
 }

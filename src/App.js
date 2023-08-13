@@ -14,6 +14,7 @@ import SignUpAdmin from "./components/admin/SignUpAdmin";
 // Style Imports
 import "./styles/style.css";
 import "./styles/styleHeader.css";
+import "./styles/styleHome.css";
 import "./styles/styleCardGrid.css";
 
 function App() {
