@@ -1,19 +1,17 @@
 import React, { useContext, useState } from "react";
 import Card from "./Card";
-import { CardsContext } from "../contexts/CardsContext";
-import { CardsDuplicatedContext } from "../contexts/CardsDuplicatedContext";
+import { CardsContext } from "../../contexts/CardsContext";
+import { DuplicatesContext } from "../../contexts/DuplicatesContext";
 
 function CardGrid() {
   const { cards } = useContext(CardsContext);
-  const { cardsDuplicated, setCardsDuplicated } = useContext(
-    CardsDuplicatedContext
-  );
+  const { duplicates, setDuplicates } = useContext(DuplicatesContext);
 
-  const [gridDimensions, setGridDimensions] = useState("grid6x6");
+  const [gridDimensions, setGridDimensions] = useState("grid3x4");
 
   const [previous, setPrevious] = useState(-1);
 
-  const duplicates = [];
+  const currentCardSet = [];
   let startingIndex = 0;
   let endingIndex = 0;
 
@@ -28,14 +26,14 @@ function CardGrid() {
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
         //  Populate the array twice every iteration, to store duplicates
-        duplicates.push(cards[ctr]);
-        duplicates.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
       }
 
       // Jumble the array elements before saving to localStorage
-      duplicates.sort(() => Math.random() - 0.5);
+      currentCardSet.sort(() => Math.random() - 0.5);
 
-      localStorage.setItem("cardsDuplicated", JSON.stringify(duplicates));
+      localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     // If "gridDimensions" = 4x5, the number of card pairs needed will be 10 making a grid of 20 cards
     // Randomly select a number between 1 to 47 and set as the starting index count
@@ -47,14 +45,14 @@ function CardGrid() {
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
         //  Populate the array twice every iteration, to store duplicates
-        duplicates.push(cards[ctr]);
-        duplicates.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
       }
 
       // Jumble the array elements before saving to localStorage
-      duplicates.sort(() => Math.random() - 0.5);
+      currentCardSet.sort(() => Math.random() - 0.5);
 
-      localStorage.setItem("cardsDuplicated", JSON.stringify(duplicates));
+      localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     // If "gridDimensions" = 4x6, the number of card pairs needed will be 12 making a grid of 24 cards
     // Randomly select a number between 1 to 45 and set as the starting index count
@@ -66,14 +64,14 @@ function CardGrid() {
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
         //  Populate the array twice every iteration, to store duplicates
-        duplicates.push(cards[ctr]);
-        duplicates.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
       }
 
       // Jumble the array elements before saving to localStorage
-      duplicates.sort(() => Math.random() - 0.5);
+      currentCardSet.sort(() => Math.random() - 0.5);
 
-      localStorage.setItem("cardsDuplicated", JSON.stringify(duplicates));
+      localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     // Same logic until "gridDimensions" = 6x8
     case "grid5x6":
@@ -81,96 +79,96 @@ function CardGrid() {
       endingIndex = startingIndex + 15;
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
-        duplicates.push(cards[ctr]);
-        duplicates.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
       }
 
       // Jumble the array elements before saving to localStorage
-      duplicates.sort(() => Math.random() - 0.5);
+      currentCardSet.sort(() => Math.random() - 0.5);
 
-      localStorage.setItem("cardsDuplicated", JSON.stringify(duplicates));
+      localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     case "grid6x6":
       startingIndex = Math.floor(Math.random() * (39 - 1) + 1);
       endingIndex = startingIndex + 18;
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
-        duplicates.push(cards[ctr]);
-        duplicates.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
       }
 
       // Jumble the array elements before saving to localStorage
-      duplicates.sort(() => Math.random() - 0.5);
+      currentCardSet.sort(() => Math.random() - 0.5);
 
-      localStorage.setItem("cardsDuplicated", JSON.stringify(duplicates));
+      localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     case "grid6x7":
       startingIndex = Math.floor(Math.random() * (36 - 1) + 1);
       endingIndex = startingIndex + 21;
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
-        duplicates.push(cards[ctr]);
-        duplicates.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
       }
 
       // Jumble the array elements before saving to localStorage
-      duplicates.sort(() => Math.random() - 0.5);
+      currentCardSet.sort(() => Math.random() - 0.5);
 
-      localStorage.setItem("cardsDuplicated", JSON.stringify(duplicates));
+      localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
     case "grid6x8":
       startingIndex = Math.floor(Math.random() * (33 - 1) + 1);
       endingIndex = startingIndex + 24;
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
-        duplicates.push(cards[ctr]);
-        duplicates.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
       }
 
       // Jumble the array elements before saving to localStorage
-      duplicates.sort(() => Math.random() - 0.5);
+      currentCardSet.sort(() => Math.random() - 0.5);
 
-      localStorage.setItem("cardsDuplicated", JSON.stringify(duplicates));
+      localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
-    //  Default "gridDimensions" = 4x4
+    //  Default "gridDimensions" = 3x4
     default:
-      startingIndex = Math.floor(Math.random() * (49 - 1) + 1);
-      endingIndex = startingIndex + 8;
+      startingIndex = Math.floor(Math.random() * (51 - 1) + 1);
+      endingIndex = startingIndex + 6;
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
-        duplicates.push(cards[ctr]);
-        duplicates.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
+        currentCardSet.push(cards[ctr]);
       }
 
       // Jumble the array elements before saving to localStorage
-      duplicates.sort(() => Math.random() - 0.5);
+      currentCardSet.sort(() => Math.random() - 0.5);
 
-      localStorage.setItem("cardsDuplicated", JSON.stringify(duplicates));
+      localStorage.setItem("duplicates", JSON.stringify(currentCardSet));
       break;
   }
 
+  // console.log(currentCardSet);
   // console.log(duplicates);
-  // console.log(cardsDuplicated);
 
   function statusCheck(current) {
-    if (cardsDuplicated[current].id === cardsDuplicated[previous].id) {
-      cardsDuplicated[current].stat = "correct";
-      cardsDuplicated[previous].stat = "correct";
+    if (duplicates[current].id === duplicates[previous].id) {
+      duplicates[current].stat = "correct";
+      duplicates[previous].stat = "correct";
 
-      setCardsDuplicated([...cardsDuplicated]);
+      setDuplicates([...duplicates]);
 
       setPrevious(-1);
     } else {
-      cardsDuplicated[current].stat = "wrong";
-      cardsDuplicated[previous].stat = "wrong";
+      duplicates[current].stat = "wrong";
+      duplicates[previous].stat = "wrong";
 
-      setCardsDuplicated([...cardsDuplicated]);
+      setDuplicates([...duplicates]);
 
       setTimeout(() => {
-        cardsDuplicated[current].stat = "";
-        cardsDuplicated[previous].stat = "";
+        duplicates[current].stat = "";
+        duplicates[previous].stat = "";
 
-        setCardsDuplicated([...cardsDuplicated]);
+        setDuplicates([...duplicates]);
         setPrevious(-1);
       }, 1500);
     }
@@ -178,9 +176,9 @@ function CardGrid() {
 
   function handleClick(id) {
     if (previous === -1) {
-      cardsDuplicated[id].stat = "active";
+      duplicates[id].stat = "active";
 
-      setCardsDuplicated([...cardsDuplicated]);
+      setDuplicates([...duplicates]);
       setPrevious(id);
     } else {
       statusCheck(id);
@@ -189,10 +187,10 @@ function CardGrid() {
 
   return (
     <div className={"divCardGrid " + gridDimensions}>
-      {cardsDuplicated.map((card, index) => (
+      {duplicates.map((card, index) => (
         <Card
           key={index}
-          id={index}
+          cardID={index}
           cardImage={card.img}
           cardStatus={card.stat}
           handleClick={handleClick}
