@@ -106,3 +106,21 @@
 .card.active img {
   transform: scale(1);
 }
+
+.divMechanics {
+  padding: 9px;
+  border-radius: 8px;
+  color: rgb(94, 38, 88) !important;
+}
+
+.divMechanics p {
+  font-size: 20px;
+  letter-spacing: 1px;
+  border-color: rgb(94, 38, 88) !important;
+}
+
+.countdownTimer {
+  font-family: "GAMERIA";
+  font-size: 27px;
+  color: rgb(94, 38, 88);
+}
