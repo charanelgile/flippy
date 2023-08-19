@@ -46,11 +46,12 @@
 
 .card {
   width: auto;
-  background-color: #fff;
+  border-radius: 5px;
+  border: 5px solid rgb(230, 230, 230);
+  background-color: rgb(230, 230, 230);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
   transform: rotateY(180deg);
   animation: 2s hideCard linear;
   transition: transform 0.5s;
@@ -89,11 +90,13 @@
 }
 
 .card.correct {
-  border: 5px solid #65e469;
+  border: 5px solid rgb(255, 200, 20);
+  /* Prevent the cards from being flipped again, once tagged as "correct" */
+  pointer-events: none;
 }
 
 .card.wrong {
-  border: 5px solid #fd245a;
+  border: 5px solid rgb(255, 25, 85);
 }
 
 .card.active img {

@@ -6,16 +6,16 @@ import App from "./App";
 import "./index.css";
 
 // Cards Context
-import { CardsContextProvider } from "./contexts/CardsContext";
-import { DuplicatesContextProvider } from "./contexts/DuplicatesContext";
+import { CardSetAContextProvider } from "./contexts/CardSetAContext";
+import { CardSetBContextProvider } from "./contexts/CardSetBContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CardsContextProvider>
-      <DuplicatesContextProvider>
+    <CardSetAContextProvider>
+      <CardSetBContextProvider>
         <App />
-      </DuplicatesContextProvider>
-    </CardsContextProvider>
+      </CardSetBContextProvider>
+    </CardSetAContextProvider>
   </React.StrictMode>
 );

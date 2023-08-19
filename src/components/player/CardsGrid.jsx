@@ -1,25 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Card from "./Card";
 import { CardSetAContext } from "../../contexts/CardSetAContext";
 import { CardSetBContext } from "../../contexts/CardSetBContext";
 
-function CardGrid() {
-  const [deck, setDeck] = useState([]);
-
-  const [previous, setPrevious] = useState(-1);
-
+const CardsGrid = () => {
   const { cardsA } = useContext(CardSetAContext);
   const { cardsB } = useContext(CardSetBContext);
 
   let gridWidth = "85%";
-  const [gridDimensions, setGridDimensions] = useState("grid4x4");
+  const [gridDimensions, setGridDimensions] = useState("grid4x5");
 
   let startCount = 0;
   let endCount = 0;
-  let pairs = [];
+  let deck = [];
 
-  // Start the Game at the Click of the Button
-  const startGame = (dimensions) => {
+  const begin = (dimensions) => {
     switch (dimensions) {
       // If dimensions = 4x4, the number of card pairs needed will be 8 making a grid of 16 cards
       // Randomly select a number between 1 to 49 and set as the starting count
@@ -31,9 +26,9 @@ function CardGrid() {
         startCount = Math.floor(Math.random() * (49 - 1) + 1);
         endCount = startCount + 8;
 
-        populatePairs(startCount, endCount);
+        populateDeck(startCount, endCount);
 
-        console.log(pairs);
+        console.log(deck);
         break;
       // If dimensions = 4x5, the number of card pairs needed will be 10 making a grid of 20 cards
       // Randomly select a number between 1 to 47 and set as the starting count
@@ -45,9 +40,9 @@ function CardGrid() {
         startCount = Math.floor(Math.random() * (47 - 1) + 1);
         endCount = startCount + 10;
 
-        populatePairs(startCount, endCount);
+        populateDeck(startCount, endCount);
 
-        console.log(pairs);
+        console.log(deck);
         break;
       // If dimensions = 4x6, the number of card pairs needed will be 12 making a grid of 24 cards
       // Randomly select a number between 1 to 45 and set as the starting count
@@ -59,9 +54,9 @@ function CardGrid() {
         startCount = Math.floor(Math.random() * (45 - 1) + 1);
         endCount = startCount + 12;
 
-        populatePairs(startCount, endCount);
+        populateDeck(startCount, endCount);
 
-        console.log(pairs);
+        console.log(deck);
         break;
       // dimensions = 5x6
       case "grid5x6":
@@ -70,9 +65,9 @@ function CardGrid() {
         startCount = Math.floor(Math.random() * (42 - 1) + 1);
         endCount = startCount + 15;
 
-        populatePairs(startCount, endCount);
+        populateDeck(startCount, endCount);
 
-        console.log(pairs);
+        console.log(deck);
         break;
       // dimensions = 6x6
       case "grid6x6":
@@ -81,9 +76,9 @@ function CardGrid() {
         startCount = Math.floor(Math.random() * (39 - 1) + 1);
         endCount = startCount + 18;
 
-        populatePairs(startCount, endCount);
+        populateDeck(startCount, endCount);
 
-        console.log(pairs);
+        console.log(deck);
         break;
       // dimensions = 6x7
       case "grid6x7":
@@ -92,9 +87,9 @@ function CardGrid() {
         startCount = Math.floor(Math.random() * (36 - 1) + 1);
         endCount = startCount + 21;
 
-        populatePairs(startCount, endCount);
+        populateDeck(startCount, endCount);
 
-        console.log(pairs);
+        console.log(deck);
         break;
       // dimensions = 6x8
       case "grid6x8":
@@ -103,102 +98,44 @@ function CardGrid() {
         startCount = Math.floor(Math.random() * (33 - 1) + 1);
         endCount = startCount + 24;
 
-        populatePairs(startCount, endCount);
+        populateDeck(startCount, endCount);
 
-        console.log(pairs);
+        console.log(deck);
         break;
       // default dimensions = 3x4
       default:
         startCount = Math.floor(Math.random() * (51 - 1) + 1);
         endCount = startCount + 6;
 
-        populatePairs(startCount, endCount);
+        populateDeck(startCount, endCount);
 
-        console.log(pairs);
+        console.log(deck);
         break;
     }
   };
 
-  // Populate the Pair of Cards
-  const populatePairs = (start, end) => {
+  // Populate the Deck of Cards
+  const populateDeck = (start, end) => {
     for (let x = start; x < end; x++) {
-      pairs.push(cardsA[x]);
-      pairs.push(cardsB[x]);
+      deck.push(cardsA[x]);
+      deck.push(cardsB[x]);
     }
 
-    // Randomize the Pair of Cards
-    pairs.sort(() => Math.random() - 0.5);
-
-    // Pass the Randomized Pair of Cards to the Deck
-    setDeck(pairs);
+    // Randomize the Deck of Cards
+    deck.sort(() => Math.random() - 0.5);
   };
 
-  // Card Tagger (Correct or Wrong)
-  function cardTag(current) {
-    if (deck[current].id === deck[previous].id) {
-      deck[current].stat = "correct";
-      deck[previous].stat = "correct";
-
-      setDeck([...deck]);
-
-      setPrevious(-1);
-    } else {
-      deck[current].stat = "wrong";
-      deck[previous].stat = "wrong";
-
-      setDeck([...deck]);
-
-      setTimeout(() => {
-        deck[current].stat = "";
-        deck[previous].stat = "";
-
-        setDeck([...deck]);
-        setPrevious(-1);
-      }, 1500);
-    }
-  }
-
-  // Card Click Handler
-  function cardClick(id) {
-    if (previous === -1) {
-      deck[id].stat = "shown";
-
-      setDeck([...deck]);
-      setPrevious(id);
-    } else {
-      cardTag(id);
-    }
-  }
-
   return (
-    <div>
-      {deck.length > 0 ? null : (
-        <div className="text-center mb-5">
-          <button
-            className="btn btn-warning text-white"
-            onClick={() => {
-              startGame(gridDimensions);
-            }}>
-            Start Game
-          </button>
-        </div>
-      )}
-
-      <div
-        className={"divCardGrid " + gridDimensions}
-        style={{ width: gridWidth }}>
-        {deck.map((card, index) => (
-          <Card
-            key={index}
-            cardID={index}
-            cardImage={card.img}
-            cardStatus={card.stat}
-            cardClick={cardClick}
-          />
-        ))}
-      </div>
+    <div className="text-center mb-5">
+      <button
+        className="btn btn-warning text-white"
+        onClick={() => {
+          begin(gridDimensions);
+        }}>
+        Start Game
+      </button>
     </div>
   );
-}
+};
 
-export default CardGrid;
+export default CardsGrid;
