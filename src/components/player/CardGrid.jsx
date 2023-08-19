@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
-import Card from "./Card";
+// Library Imports
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRightLeft,
   faHourglassStart,
 } from "@fortawesome/free-solid-svg-icons";
 
+// Page & Component Imports
+import Card from "./Card";
+import CountdownTimer from "./CountdownTimer";
+
 function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
   const [previous, setPrevious] = useState(-1);
 
   const [flipCount, setFlipCount] = useState(0);
-
-  const [secTimer, setSecTimer] = useState(0);
-  const [minTimer, setMinTimer] = useState(0);
 
   // Card Tagger (Correct or Wrong)
   function cardTagger(current) {
@@ -60,19 +61,6 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
     }
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (secTimer >= 59) {
-        setSecTimer(0);
-        setMinTimer(minTimer + 1);
-      } else {
-        setSecTimer(secTimer + 1);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [secTimer, minTimer]);
-
   return (
     <div>
       <div
@@ -88,14 +76,9 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
 
         <div className="divMechanics bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
-            <span>
-              <FontAwesomeIcon icon={faHourglassStart} />
-            </span>
+            <FontAwesomeIcon icon={faHourglassStart} />
             &nbsp;&nbsp;
-            <span className="countdownTimer">{minTimer}:</span>
-            <span className="countdownTimer">
-              {secTimer < 10 ? `0${secTimer}` : secTimer}
-            </span>
+            <CountdownTimer />
           </p>
         </div>
       </div>
