@@ -5,11 +5,10 @@ import { CardSetBContext } from "../../contexts/CardSetBContext";
 
 function CardGrid() {
   const [deck, setDeck] = useState([]);
-
-  const [previous, setPrevious] = useState(-1);
-
   const { cardsA } = useContext(CardSetAContext);
   const { cardsB } = useContext(CardSetBContext);
+
+  const [previous, setPrevious] = useState(-1);
 
   let gridWidth = "85%";
   const [gridDimensions, setGridDimensions] = useState("grid4x4");
@@ -136,16 +135,19 @@ function CardGrid() {
   // Card Tagger (Correct or Wrong)
   function cardTag(current) {
     if (deck[current].id === deck[previous].id) {
-      deck[current].stat = "correct";
-      deck[previous].stat = "correct";
+      if (deck[current].type !== deck[previous].type) {
+        deck[current].stat = "correct";
+        deck[previous].stat = "correct";
 
-      setDeck([...deck]);
+        setDeck([...deck]);
 
-      setPrevious(-1);
+        setPrevious(-1);
+      }
     } else {
       deck[current].stat = "wrong";
       deck[previous].stat = "wrong";
 
+      // Update the value of the State Variable for the Animation to Kick In
       setDeck([...deck]);
 
       setTimeout(() => {
@@ -154,21 +156,23 @@ function CardGrid() {
 
         setDeck([...deck]);
         setPrevious(-1);
-      }, 1500);
+      }, 500);
     }
   }
 
   // Card Click Handler
-  function cardClick(id) {
+  function cardClick(idx) {
     if (previous === -1) {
-      deck[id].stat = "shown";
+      deck[idx].stat = "shown";
 
       setDeck([...deck]);
-      setPrevious(id);
+      setPrevious(idx);
     } else {
-      cardTag(id);
+      cardTag(idx);
     }
   }
+
+  console.log(`Previous Value: ${previous}`);
 
   return (
     <div>
