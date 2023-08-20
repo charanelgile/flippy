@@ -7,6 +7,8 @@ import "./index.css";
 
 // Cards Context
 import { CardsContextProvider } from "./contexts/CardsContext";
+import { CardSetAContextProvider } from "./contexts/CardSetAContext";
+import { CardSetBContextProvider } from "./contexts/CardSetBContext";
 import { DuplicatesContextProvider } from "./contexts/DuplicatesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -14,7 +16,11 @@ root.render(
   <React.StrictMode>
     <CardsContextProvider>
       <DuplicatesContextProvider>
-        <App />
+        <CardSetAContextProvider>
+          <CardSetBContextProvider>
+            <App />
+          </CardSetBContextProvider>
+        </CardSetAContextProvider>
       </DuplicatesContextProvider>
     </CardsContextProvider>
   </React.StrictMode>

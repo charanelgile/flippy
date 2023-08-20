@@ -46,14 +46,15 @@
 
 .card {
   width: auto;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
   transform: rotateY(180deg);
-  animation: 2s hideCard linear;
   transition: transform 0.5s;
+  animation: 2s hideCard linear;
+  border: 10px solid white;
 }
 
 @keyframes hideCard {
@@ -67,10 +68,10 @@
 }
 
 .card img {
-  max-width: 90%;
-  max-height: 90%;
-  transition: transform 0.5s;
+  max-width: 85%;
+  max-height: 85%;
   transform: scale(0);
+  transition: transform 0.5s;
   animation: 2s hideImage linear;
 }
 
@@ -89,11 +90,11 @@
 }
 
 .card.correct {
-  border: 5px solid #65e469;
+  border: 10px solid rgb(255, 192, 20);
 }
 
 .card.wrong {
-  border: 5px solid #fd245a;
+  border: 10px solid rgb(255, 35, 90);
 }
 
 .card.active img {

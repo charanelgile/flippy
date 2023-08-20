@@ -7,13 +7,12 @@ function CardGrid() {
   const { cards } = useContext(CardsContext);
   const { duplicates, setDuplicates } = useContext(DuplicatesContext);
 
-  const [gridDimensions, setGridDimensions] = useState("grid6x8");
+  let gridWidth = "85%";
+  const [gridDimensions, setGridDimensions] = useState("grid4x4");
 
   const [previous, setPrevious] = useState(-1);
 
-  let gridWidth = "85%";
-
-  const currentCardSet = [];
+  let currentCardSet = [];
   let startingIndex = 0;
   let endingIndex = 0;
 
@@ -30,7 +29,7 @@ function CardGrid() {
       endingIndex = startingIndex + 8;
 
       for (let ctr = startingIndex; ctr < endingIndex; ctr++) {
-        //  Populate the array twice every iteration, to store duplicates
+        // Populate the array twice every iteration, to store duplicates
         currentCardSet.push(cards[ctr]);
         currentCardSet.push(cards[ctr]);
       }
@@ -177,28 +176,35 @@ function CardGrid() {
       duplicates[current].stat = "wrong";
       duplicates[previous].stat = "wrong";
 
-      setDuplicates([...duplicates]);
+      // setDuplicates([...duplicates]);
 
       setTimeout(() => {
         duplicates[current].stat = "";
         duplicates[previous].stat = "";
 
         setDuplicates([...duplicates]);
-        setPrevious(-1);
-      }, 1500);
+      }, 1000);
+
+      setPrevious(-1);
     }
   }
 
   // Card Click Handler
-  function cardClick(id) {
+  function cardClick(idx) {
+    console.log(duplicates);
+    console.log(previous);
+
     if (previous === -1) {
-      duplicates[id].stat = "shown";
+      duplicates[idx].stat = "shown";
 
       setDuplicates([...duplicates]);
-      setPrevious(id);
+
+      setPrevious(idx);
     } else {
-      cardTag(id);
+      cardTag(idx);
     }
+
+    console.log(previous);
   }
 
   return (
