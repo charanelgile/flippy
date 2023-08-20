@@ -59,8 +59,6 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
     } else {
       cardTagger(idx);
     }
-
-    console.log(previous);
   }
 
   return (

@@ -4,7 +4,6 @@ import { CardSetAContext } from "../contexts/CardSetAContext";
 import { CardSetBContext } from "../contexts/CardSetBContext";
 
 import CardGrid from "../components/player/CardGrid";
-import CardsGrid from "../components/player/CardsGrid";
 
 export default function Home() {
   const [deck, setDeck] = useState([]);

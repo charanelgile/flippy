@@ -52,11 +52,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  align-items: center;
   transform: rotateY(180deg);
   transition: transform 0.5s;
   animation: 2s hideCard linear;
-  border: 10px solid white;
 }
 
 @keyframes hideCard {
@@ -72,6 +70,7 @@
 .card img {
   max-width: 100%;
   max-height: 100%;
+  transform: scale(0);
   transition: transform 0.5s;
   animation: 2s hideImage linear;
 }
