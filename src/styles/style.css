@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none !important;
-  color: rgb(255, 192, 20);
 }
 
 *::after,
@@ -12,6 +11,7 @@
 }
 
 body {
+  font-family: "Jungle Adventurer";
   background: radial-gradient(
       rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 0),
