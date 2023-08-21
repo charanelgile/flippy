@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div>
       <StartGame
-        gridDimensions="grid4x5"
+        gridDimensions="grid3x4"
         currentLevel={currentLevel}
         setCurrentLevel={setCurrentLevel}
       />

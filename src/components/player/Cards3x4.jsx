@@ -1,8 +1,11 @@
 // Library Imports
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faHourglassStart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAward,
+  faStar,
+  faHourglassStart,
+} from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 
 // Page & Component Imports
@@ -10,20 +13,32 @@ import Card from "./Card";
 
 // Custom Hook Import
 import useCountdownTimer from "../../hooks/useCountdownTimer";
+import useCardHandler from "../../hooks/useCardHandler";
 
-function Cards3x4({ deck, setDeck, dimensions }) {
+function Cards3x4({
+  deck,
+  setDeck,
+  dimensions,
+  currentLevel,
+  setCurrentLevel,
+}) {
   const [countdown, mm, ss] = useCountdownTimer({ min: 0, sec: 30 });
 
-  const [flipCount, setFlipCount] = useState(0);
-
-  const [previous, setPrevious] = useState(-1);
-
-  const [score, setScore] = useState(0);
-  let personalBest = 0;
-
-  const [isLevelComplete, setIsLevelComplete] = useState(false);
-
-  let goToNextLevel = useNavigate();
+  const [
+    previous,
+    setPrevious,
+    flipCount,
+    setFlipCount,
+    score,
+    setScore,
+    totalScore,
+    setTotalScore,
+    personalBest,
+    isLevelComplete,
+    setIsLevelComplete,
+    statChecker,
+    computeFinalScore,
+  ] = useCardHandler({ min: mm, sec: ss });
 
   // Card Flipper (Click Handler)
   function cardFlipper(idx) {
@@ -47,6 +62,9 @@ function Cards3x4({ deck, setDeck, dimensions }) {
         deck[previous].stat = "correct";
 
         setScore(score + 250);
+        setTotalScore(score + 250);
+
+        console.log(totalScore);
 
         setFlipCount(flipCount + 1);
 
@@ -58,6 +76,7 @@ function Cards3x4({ deck, setDeck, dimensions }) {
         // every() will only return true if all elements of the deck satisfy the conditions on statChecker
         if (deck.every(statChecker)) {
           setIsLevelComplete(!isLevelComplete);
+          setCurrentLevel(currentLevel + 1);
           computeFinalScore(mm, ss, score);
         }
       }
@@ -81,16 +100,16 @@ function Cards3x4({ deck, setDeck, dimensions }) {
   }
 
   // Status Checker (If all cards in the deck has been tagged "Correct")
-  const statChecker = (element, index, array) => {
-    // Returns true for the First Element
-    // This will serve as the Point of Comparison
-    if (index === 0) {
-      return true;
-    } else {
-      // Returns true if the Status of the Current Element is equal to the Status of the Previous Element
-      return element.stat === array[index - 1].stat;
-    }
-  };
+  // const statChecker = (element, index, array) => {
+  //   // Returns true for the First Element
+  //   // This will serve as the Point of Comparison
+  //   if (index === 0) {
+  //     return true;
+  //   } else {
+  //     // Returns true if the Status of the Current Element is equal to the Status of the Previous Element
+  //     return element.stat === array[index - 1].stat;
+  //   }
+  // };
 
   // Level Failed
   if (countdown === "00:00" && isLevelComplete === false) {
@@ -101,62 +120,59 @@ function Cards3x4({ deck, setDeck, dimensions }) {
   }
 
   // Compute Final Score
-  const computeFinalScore = (min, sec, score) => {
-    let totalTimeRemaining = min * 60 + sec;
-    console.log(`Remaining minutes: ${min}`);
-    console.log(`Remaining seconds: ${sec}`);
+  // const computeFinalScore = (min, sec, score) => {
+  //   let totalTimeRemaining = min * 60 + sec;
+  //   console.log(`Remaining minutes: ${min}`);
+  //   console.log(`Remaining seconds: ${sec}`);
 
-    let currentScore = score + 250;
+  //   let currentScore = score + 250;
 
-    let timeBonus = totalTimeRemaining * 50;
-    console.log(`Time Bonus: ${timeBonus}`);
+  //   let timeBonus = totalTimeRemaining * 50;
+  //   console.log(`Time Bonus: ${timeBonus}`);
 
-    console.log(`Current Score: ${currentScore}`);
+  //   console.log(`Current Score: ${currentScore}`);
 
-    let totalScore = currentScore + timeBonus;
-    console.log(`Total Score: ${totalScore}`);
+  //   let totalScore = currentScore + timeBonus;
+  //   console.log(`Total Score: ${totalScore}`);
 
-    if (totalScore > personalBest) {
-      personalBest = totalScore;
-      console.log(`Personal Best: ${personalBest}`);
-    } else {
-      console.log(`Personal Best: ${personalBest}`);
-    }
+  //   if (totalScore > personalBest) {
+  //     setPersonalBest(totalScore);
+  //   }
 
-    Swal.fire({
-      title: "Congratulations",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Next Level",
-      denyButtonText: "Retry",
-      cancelButtonText: "Ranking",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        goToNextLevel("/Level2");
-      } else if (result.isDenied) {
-        Swal.fire("Retry Level", "", "info");
-      } else {
-        Swal.fire("This should go to the Ranking", "", "warning");
-      }
-    });
+  //   Swal.fire({
+  //     title: "Congratulations",
+  //     showDenyButton: true,
+  //     showCancelButton: true,
+  //     confirmButtonText: "Next Level",
+  //     denyButtonText: "Retry",
+  //     cancelButtonText: "Ranking",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       goToNextLevel(`/Level${currentLevel}`);
+  //     } else if (result.isDenied) {
+  //       Swal.fire("Retry Level", "", "info");
+  //     } else {
+  //       Swal.fire("This should go to the Ranking", "", "warning");
+  //     }
+  //   });
 
-    completeLevel();
-  };
+  //   completeLevel();
+  // };
 
-  const completeLevel = () => {
-    console.log("Level Completed!");
-  };
+  // const completeLevel = () => {
+  //   console.log("Level Completed!");
+  // };
 
   return (
     <div>
       <div className="d-flex justify-content-evenly mx-auto">
-        {/* <p
-            id="lblFlipCounter"
-            className="rounded border border-3 border-warning px-3">
-            <FontAwesomeIcon icon={faRightLeft} />
-            &nbsp;
-            <span id="valFlipCounter">{flipCount}</span>
-          </p> */}
+        <div className="divMechanics bg-warning mb-3">
+          <p className="m-0 px-3 border border-3 rounded">
+            <FontAwesomeIcon icon={faAward} />
+            &nbsp;&nbsp;
+            <span className="trackers">{totalScore}</span>
+          </p>
+        </div>
 
         <div className="divMechanics bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
