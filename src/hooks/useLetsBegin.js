@@ -13,7 +13,7 @@ const useLetsBegin = ({ dimensions }) => {
   let pairs = [];
 
   // Start the Game at the Click of the Button
-  const startGame = (dimensions) => {
+  const startGame = () => {
     switch (dimensions) {
       // If dimensions = 4x4, the number of card pairs needed will be 8 making a grid of 16 cards
       // Randomly select a number between 1 to 49 and set as the starting count

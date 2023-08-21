@@ -1,3 +1,7 @@
+#containerCardGrid {
+  padding: 0 12%;
+}
+
 .divCardGrid {
   margin: 0 auto;
   display: grid;
