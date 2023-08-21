@@ -119,8 +119,10 @@
   border-color: rgb(94, 38, 88) !important;
 }
 
-.countdownTimer {
-  font-family: "GAMERIA";
+.trackers {
   font-size: 27px;
+  font-family: "GAMERIA";
   color: rgb(94, 38, 88);
+  position: relative;
+  top: 2px;
 }

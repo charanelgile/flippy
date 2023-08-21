@@ -1,8 +1,11 @@
+// Library Imports
 import React, { useContext, useState } from "react";
 
+// Context Imports
 import { CardSetAContext } from "../contexts/CardSetAContext";
 import { CardSetBContext } from "../contexts/CardSetBContext";
 
+// Page & Component Imports
 import CardGrid from "../components/player/CardGrid";
 
 export default function Home() {

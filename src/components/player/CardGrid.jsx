@@ -1,15 +1,12 @@
 // Library Imports
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  // faRightLeft,
-  faHourglassStart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faStar, faHourglassStart } from "@fortawesome/free-solid-svg-icons";
 
 // Page & Component Imports
 import Card from "./Card";
 
-// Other Imports
+// Custom Hook Import
 import useCountdownTimer from "../../hooks/useCountdownTimer";
 
 function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
@@ -19,6 +16,8 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
 
   const [previous, setPrevious] = useState(-1);
 
+  const [score, setScore] = useState(0);
+
   // Card Tagger (Correct or Wrong)
   function cardTagger(current) {
     if (deck[current].id === deck[previous].id) {
@@ -26,11 +25,15 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
         deck[current].stat = "correct";
         deck[previous].stat = "correct";
 
+        setScore(score + 250);
+
         setFlipCount(flipCount + 1);
 
         setDeck([...deck]);
 
         setPrevious(-1);
+
+        console.log(deck);
       }
     } else {
       deck[current].stat = "wrong";
@@ -80,9 +83,17 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
 
         <div className="divMechanics bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
+            <FontAwesomeIcon icon={faStar} />
+            &nbsp;&nbsp;
+            <span className="trackers">{score}</span>
+          </p>
+        </div>
+
+        <div className="divMechanics bg-warning mb-3">
+          <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faHourglassStart} />
             &nbsp;&nbsp;
-            <span className="countdownTimer">{countdown}</span>
+            <span className="trackers">{countdown}</span>
           </p>
         </div>
       </div>
