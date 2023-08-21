@@ -29,7 +29,7 @@ const useCountdownTimer = ({ min, sec }) => {
     return () => clearInterval(interval);
   }, [ss, mm]);
 
-  return [countdown, setCountdown];
+  return [countdown, mm, ss];
 };
 
 export default useCountdownTimer;

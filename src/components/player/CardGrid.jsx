@@ -10,7 +10,7 @@ import Card from "./Card";
 import useCountdownTimer from "../../hooks/useCountdownTimer";
 
 function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
-  const [countdown, setCountdown] = useCountdownTimer({ min: 0, sec: 30 });
+  const [countdown, mm, ss] = useCountdownTimer({ min: 5, sec: 15 });
 
   const [flipCount, setFlipCount] = useState(0);
 
@@ -33,7 +33,25 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
 
         setPrevious(-1);
 
-        console.log(deck);
+        // Determine if the status of all cards are "correct"
+        // every() will only return true if all elements of the deck satisfy the conditions on statChecker
+        if (deck.every(statChecker)) {
+          console.log("Level Complete!");
+
+          console.log(`Remaining minutes: ${mm}`);
+          console.log(`Remaining seconds: ${ss}`);
+
+          const overall = mm * 60 + ss;
+          console.log(`Remaining time (overall): ${overall}`);
+
+          const timeBonus = overall * 50;
+          console.log(`Time Bonus (Score from remaining time): ${timeBonus}`);
+          const finalScore = score + 250;
+          console.log(`Score from matched pairs flipped: ${finalScore}`);
+
+          const totalScore = finalScore + timeBonus;
+          console.log(`Overall Score: ${totalScore}`);
+        }
       }
     } else {
       deck[current].stat = "wrong";
@@ -67,6 +85,18 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
       cardTagger(idx);
     }
   }
+
+  // Status Checker
+  const statChecker = (element, index, array) => {
+    // Returns true for the First Element
+    // This will serve as the Point of Comparison
+    if (index === 0) {
+      return true;
+    } else {
+      // Returns true if the Status of the Current Element is equal to the Status of the Previous Element
+      return element.stat === array[index - 1].stat;
+    }
+  };
 
   return (
     <div>
