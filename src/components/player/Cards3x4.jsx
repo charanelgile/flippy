@@ -1,8 +1,9 @@
 // Library Imports
 import React, { useState } from "react";
-import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHourglassStart } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
 
 // Page & Component Imports
 import Card from "./Card";
@@ -10,7 +11,7 @@ import Card from "./Card";
 // Custom Hook Import
 import useCountdownTimer from "../../hooks/useCountdownTimer";
 
-function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
+function Cards3x4({ deck, setDeck, dimensions }) {
   const [countdown, mm, ss] = useCountdownTimer({ min: 0, sec: 30 });
 
   const [flipCount, setFlipCount] = useState(0);
@@ -21,6 +22,8 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
   let personalBest = 0;
 
   const [isLevelComplete, setIsLevelComplete] = useState(false);
+
+  let goToNextLevel = useNavigate();
 
   // Card Flipper (Click Handler)
   function cardFlipper(idx) {
@@ -55,8 +58,6 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
         // every() will only return true if all elements of the deck satisfy the conditions on statChecker
         if (deck.every(statChecker)) {
           setIsLevelComplete(!isLevelComplete);
-          console.log(`Is Level Complete?\n${isLevelComplete}`);
-
           computeFinalScore(mm, ss, score);
         }
       }
@@ -94,7 +95,7 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
   // Level Failed
   if (countdown === "00:00" && isLevelComplete === false) {
     Swal.fire({
-      title: "Ooops... Sorry.",
+      title: "Game Over",
       text: "You failed to complete this level.",
     });
   }
@@ -131,7 +132,7 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
       cancelButtonText: "Ranking",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Next Level", "", "success");
+        goToNextLevel("/Level2");
       } else if (result.isDenied) {
         Swal.fire("Retry Level", "", "info");
       } else {
@@ -148,9 +149,7 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
 
   return (
     <div>
-      <div
-        className="d-flex justify-content-evenly mx-auto"
-        style={{ width: gridWidth }}>
+      <div className="d-flex justify-content-evenly mx-auto">
         {/* <p
             id="lblFlipCounter"
             className="rounded border border-3 border-warning px-3">
@@ -176,9 +175,7 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
         </div>
       </div>
 
-      <div
-        className={"divCardGrid " + gridDimensions}
-        style={{ width: gridWidth }}>
+      <div id="divCardGrid3x4" className={"divCardGrid " + dimensions}>
         {deck.map((card, index) => (
           <Card
             key={index}
@@ -193,4 +190,4 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
   );
 }
 
-export default CardGrid;
+export default Cards3x4;

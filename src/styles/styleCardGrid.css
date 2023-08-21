@@ -4,9 +4,17 @@
   gap: 0.5em;
 }
 
+#divCardGrid3x4 {
+  width: 85%;
+}
+
 .grid3x4 {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
+}
+
+#divCardGrid4x4 {
+  width: 70%;
 }
 
 .grid4x4 {
@@ -14,9 +22,17 @@
   grid-template-rows: repeat(4, 1fr);
 }
 
+#divCardGrid4x5 {
+  width: 85%;
+}
+
 .grid4x5 {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr);
+}
+
+#divCardGrid4x6 {
+  width: 95%;
 }
 
 .grid4x6 {
@@ -24,9 +40,17 @@
   grid-template-rows: repeat(4, 1fr);
 }
 
+#divCardGrid5x6 {
+  width: 75%;
+}
+
 .grid5x6 {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
+}
+
+#divCardGrid6x6 {
+  width: 70%;
 }
 
 .grid6x6 {
@@ -34,9 +58,17 @@
   grid-template-rows: repeat(6, 1fr);
 }
 
+#divCardGrid6x7 {
+  width: 75%;
+}
+
 .grid6x7 {
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
+}
+
+#divCardGrid6x8 {
+  width: 85%;
 }
 
 .grid6x8 {
