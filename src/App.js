@@ -16,6 +16,7 @@ import "./styles/style.css";
 import "./styles/styleHeader.css";
 import "./styles/styleHome.css";
 import "./styles/styleCardGrid.css";
+import "./styles/styleRank.css";
 
 function App() {
   return (

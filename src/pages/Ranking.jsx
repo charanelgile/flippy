@@ -1,9 +1,11 @@
 import React from "react";
+import Board from "../components/rankTable/Board";
 
 function Ranking() {
   return (
-    <div>
-      <h1>Ranking</h1>
+    <div className="App" id='main'>
+     
+      <Board></Board>
     </div>
   );
 }
