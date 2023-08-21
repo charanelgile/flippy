@@ -143,15 +143,11 @@ export default function Home() {
             onClick={() => {
               startGame(gridDimensions);
             }}>
-            <p className="m-0 py-1 px-3 border border-3 rounded">
-              Start Game
-            </p>
+            <p className="m-0 py-1 px-3 border border-3 rounded">Start Game</p>
           </button>
         </div>
       ) : (
-        <div
-          id="containerCardGrid"
-          className="containerForComponents">
+        <div id="containerCardGrid" className="containerForComponents">
           <CardGrid
             deck={deck}
             setDeck={setDeck}

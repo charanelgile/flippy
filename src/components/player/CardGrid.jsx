@@ -2,18 +2,22 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faRightLeft,
+  // faRightLeft,
   faHourglassStart,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Page & Component Imports
 import Card from "./Card";
-import CountdownTimer from "./CountdownTimer";
+
+// Other Imports
+import useCountdownTimer from "../../hooks/useCountdownTimer";
 
 function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
-  const [previous, setPrevious] = useState(-1);
+  const [countdown, setCountdown] = useCountdownTimer({ min: 0, sec: 30 });
 
   const [flipCount, setFlipCount] = useState(0);
+
+  const [previous, setPrevious] = useState(-1);
 
   // Card Tagger (Correct or Wrong)
   function cardTagger(current) {
@@ -78,7 +82,7 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
           <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faHourglassStart} />
             &nbsp;&nbsp;
-            <CountdownTimer />
+            <span className="countdownTimer">{countdown}</span>
           </p>
         </div>
       </div>
