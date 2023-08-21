@@ -1,5 +1,6 @@
 // Library Imports
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHourglassStart } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,13 +11,38 @@ import Card from "./Card";
 import useCountdownTimer from "../../hooks/useCountdownTimer";
 
 function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
-  const [countdown, mm, ss] = useCountdownTimer({ min: 5, sec: 15 });
+  const [countdown, mm, ss] = useCountdownTimer({ min: 0, sec: 30 });
 
   const [flipCount, setFlipCount] = useState(0);
 
   const [previous, setPrevious] = useState(-1);
 
   const [score, setScore] = useState(0);
+  let personalBest = 0;
+
+  let isLevelComplete = false;
+
+  // Level Failed
+  if (countdown === "00:00") {
+    Swal.fire({
+      title: "Ooops... Sorry.",
+      text: "You failed to complete this level.",
+    });
+  }
+
+  // Card Flipper (Click Handler)
+  function cardFlipper(idx) {
+    if (previous === -1) {
+      setFlipCount(flipCount + 1);
+
+      deck[idx].stat = "shown";
+
+      setDeck([...deck]);
+      setPrevious(idx);
+    } else {
+      cardTagger(idx);
+    }
+  }
 
   // Card Tagger (Correct or Wrong)
   function cardTagger(current) {
@@ -36,21 +62,10 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
         // Determine if the status of all cards are "correct"
         // every() will only return true if all elements of the deck satisfy the conditions on statChecker
         if (deck.every(statChecker)) {
-          console.log("Level Complete!");
+          isLevelComplete = !isLevelComplete;
+          console.log(`Is Level Complete?\n${isLevelComplete}`);
 
-          console.log(`Remaining minutes: ${mm}`);
-          console.log(`Remaining seconds: ${ss}`);
-
-          const overall = mm * 60 + ss;
-          console.log(`Remaining time (overall): ${overall}`);
-
-          const timeBonus = overall * 50;
-          console.log(`Time Bonus (Score from remaining time): ${timeBonus}`);
-          const finalScore = score + 250;
-          console.log(`Score from matched pairs flipped: ${finalScore}`);
-
-          const totalScore = finalScore + timeBonus;
-          console.log(`Overall Score: ${totalScore}`);
+          computeFinalScore(mm, ss, score);
         }
       }
     } else {
@@ -72,21 +87,7 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
     }
   }
 
-  // Card Flipper (Click Handler)
-  function cardFlipper(idx) {
-    if (previous === -1) {
-      setFlipCount(flipCount + 1);
-
-      deck[idx].stat = "shown";
-
-      setDeck([...deck]);
-      setPrevious(idx);
-    } else {
-      cardTagger(idx);
-    }
-  }
-
-  // Status Checker
+  // Status Checker (If all cards in the deck has been tagged "Correct")
   const statChecker = (element, index, array) => {
     // Returns true for the First Element
     // This will serve as the Point of Comparison
@@ -96,6 +97,37 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
       // Returns true if the Status of the Current Element is equal to the Status of the Previous Element
       return element.stat === array[index - 1].stat;
     }
+  };
+
+  // Compute Final Score
+  const computeFinalScore = (min, sec, score) => {
+    let totalTimeRemaining = min * 60 + sec;
+    console.log(`Remaining minutes: ${min}`);
+    console.log(`Remaining seconds: ${sec}`);
+
+    let currentScore = score + 250;
+
+    let timeBonus = totalTimeRemaining * 50;
+    console.log(`Time Bonus: ${timeBonus}`);
+
+    console.log(`Current Score: ${currentScore}`);
+
+    let totalScore = currentScore + timeBonus;
+    console.log(`Total Score: ${totalScore}`);
+
+    if (totalScore > personalBest) {
+      personalBest = totalScore;
+      console.log(`Personal Best: ${personalBest}`);
+    } else {
+      console.log(`Personal Best: ${personalBest}`);
+    }
+
+    Swal.fire({
+      icon: "success",
+      title: "Congratulations!",
+      text: "You have completed this level.",
+      timer: 3500,
+    });
   };
 
   return (

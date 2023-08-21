@@ -18,7 +18,6 @@ const useCountdownTimer = ({ min, sec }) => {
       } else if (ss > 0) {
         setSS(ss - 1);
       } else {
-        console.log("Time's Up!");
         clearInterval(interval);
       }
 
