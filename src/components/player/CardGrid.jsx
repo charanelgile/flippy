@@ -20,15 +20,7 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
   const [score, setScore] = useState(0);
   let personalBest = 0;
 
-  let isLevelComplete = false;
-
-  // Level Failed
-  if (countdown === "00:00") {
-    Swal.fire({
-      title: "Ooops... Sorry.",
-      text: "You failed to complete this level.",
-    });
-  }
+  const [isLevelComplete, setIsLevelComplete] = useState(false);
 
   // Card Flipper (Click Handler)
   function cardFlipper(idx) {
@@ -62,7 +54,7 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
         // Determine if the status of all cards are "correct"
         // every() will only return true if all elements of the deck satisfy the conditions on statChecker
         if (deck.every(statChecker)) {
-          isLevelComplete = !isLevelComplete;
+          setIsLevelComplete(!isLevelComplete);
           console.log(`Is Level Complete?\n${isLevelComplete}`);
 
           computeFinalScore(mm, ss, score);
@@ -99,6 +91,14 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
     }
   };
 
+  // Level Failed
+  if (countdown === "00:00" && isLevelComplete === false) {
+    Swal.fire({
+      title: "Ooops... Sorry.",
+      text: "You failed to complete this level.",
+    });
+  }
+
   // Compute Final Score
   const computeFinalScore = (min, sec, score) => {
     let totalTimeRemaining = min * 60 + sec;
@@ -123,11 +123,27 @@ function CardGrid({ deck, setDeck, gridWidth, gridDimensions }) {
     }
 
     Swal.fire({
-      icon: "success",
-      title: "Congratulations!",
-      text: "You have completed this level.",
-      timer: 3500,
+      title: "Congratulations",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Next Level",
+      denyButtonText: "Retry",
+      cancelButtonText: "Ranking",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Next Level", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Retry Level", "", "info");
+      } else {
+        Swal.fire("This should go to the Ranking", "", "warning");
+      }
     });
+
+    completeLevel();
+  };
+
+  const completeLevel = () => {
+    console.log("Level Completed!");
   };
 
   return (
