@@ -1,14 +1,19 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { PlayerSessionContext } from "../contexts/PlayerSessionContext";
 
 const useCardHandler = ({ min, sec }) => {
+  const { playerSession, setPlayerSession } = useContext(PlayerSessionContext);
+
   const [previous, setPrevious] = useState(-1);
   const [flipCount, setFlipCount] = useState(0);
   const [score, setScore] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
   const [personalBest, setPersonalBest] = useState(score);
   const [isLevelComplete, setIsLevelComplete] = useState(false);
+
+  let highScore = 0;
 
   let goToNextLevel = useNavigate();
 
@@ -29,17 +34,15 @@ const useCardHandler = ({ min, sec }) => {
 
   // Compute Final Score
   const computeFinalScore = () => {
-    let totalTimeRemaining = min * 60 + sec;
-
     let currentScore = score + 250;
 
+    let totalTimeRemaining = min * 60 + sec;
     let timeBonus = totalTimeRemaining * 50;
 
     let totalScore = currentScore + timeBonus;
-    let personalBest = currentScore;
 
-    if (totalScore > personalBest) {
-      personalBest = totalScore;
+    if (totalScore > highScore) {
+      highScore = totalScore;
     }
 
     console.log(`Remaining Minutes: ${min}`);
@@ -47,7 +50,21 @@ const useCardHandler = ({ min, sec }) => {
     console.log(`Time Bonus: ${timeBonus}\n+`);
     console.log(`Current Score: ${currentScore}\n===`);
     console.log(`Total Score: ${totalScore}`);
-    console.log(`Personal Best: ${personalBest}`);
+    console.log(`Personal Best: ${highScore}`);
+
+    let updatedPlayerSession = {
+      playerID: playerSession[0].playerID,
+      playerName: playerSession[0].playerName,
+      playerCodename: playerSession[0].playerCodename,
+      playerEmail: playerSession[0].playerEmail,
+      playerCurrentScore: 0,
+      playerTotalScore: totalScore,
+      playerHighScore: highScore,
+      playerLevel: playerSession[0].playerLevel + 1,
+      playerGridDimensions: "grid4x4",
+    };
+
+    setPlayerSession([updatedPlayerSession]);
 
     // testData = {
     //   totalScore,
@@ -92,8 +109,6 @@ const useCardHandler = ({ min, sec }) => {
     score,
     setScore,
     totalScore,
-    setTotalScore,
-    personalBest,
     isLevelComplete,
     setIsLevelComplete,
     statChecker,

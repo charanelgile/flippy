@@ -5,16 +5,19 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-// Cards Context
+// Context Providers
 import { CardSetAContextProvider } from "./contexts/CardSetAContext";
 import { CardSetBContextProvider } from "./contexts/CardSetBContext";
+import { PlayerSessionContextProvider } from "./contexts/PlayerSessionContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <CardSetAContextProvider>
       <CardSetBContextProvider>
-        <App />
+        <PlayerSessionContextProvider>
+          <App />
+        </PlayerSessionContextProvider>
       </CardSetBContextProvider>
     </CardSetAContextProvider>
   </React.StrictMode>

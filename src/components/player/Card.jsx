@@ -1,10 +1,10 @@
 import React from "react";
 
-function Card({ cardID, cardImage, cardStatus, cardFlipper }) {
+function Card({ cardIndex, cardImage, cardStatus, cardFlipper }) {
   const cardFlag = cardStatus ? " active " + cardStatus : "";
 
   return (
-    <div className={"card" + cardFlag} onClick={() => cardFlipper(cardID)}>
+    <div className={"card" + cardFlag} onClick={() => cardFlipper(cardIndex)}>
       <img src={cardImage} alt="" />
     </div>
   );

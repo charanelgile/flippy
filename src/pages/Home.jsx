@@ -1,28 +1,20 @@
 // Library Imports
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 
 // Page & Component Imports
 import StartGame from "../components/player/StartGame";
 
-export default function Home() {
-  // Get the Current Level from the Local Storage when there is a value currently stored. Otherwise, 1.
-  const [currentLevel, setCurrentLevel] = useState(
-    localStorage.getItem("currentLevel")
-      ? JSON.parse(localStorage.getItem("currentLevel"))
-      : 1
-  );
+// Context Imports
+import { PlayerSessionContext } from "../contexts/PlayerSessionContext";
 
-  // Update the value stored in the Local Storage everytime the Current Level changes
-  useEffect(() => {
-    localStorage.setItem("currentLevel", JSON.stringify(currentLevel));
-  }, [currentLevel]);
+export default function Home() {
+  const { playerSession, setPlayerSession } = useContext(PlayerSessionContext);
 
   return (
     <div>
       <StartGame
-        gridDimensions="grid3x4"
-        currentLevel={currentLevel}
-        setCurrentLevel={setCurrentLevel}
+        level={playerSession[0].playerLevel}
+        dimensions={playerSession[0].playerGridDimensions}
       />
     </div>
   );

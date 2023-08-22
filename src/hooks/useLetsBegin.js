@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { CardSetAContext } from "../contexts/CardSetAContext";
 import { CardSetBContext } from "../contexts/CardSetBContext";
 
-const useLetsBegin = ({ dimensions }) => {
+const useLetsBegin = ({ gridDimensions }) => {
   const [deck, setDeck] = useState([]);
 
   const { cardsA } = useContext(CardSetAContext);
@@ -14,7 +14,7 @@ const useLetsBegin = ({ dimensions }) => {
 
   // Start the Game at the Click of the Button
   const startGame = () => {
-    switch (dimensions) {
+    switch (gridDimensions) {
       // If dimensions = 4x4, the number of card pairs needed will be 8 making a grid of 16 cards
       // Randomly select a number between 1 to 49 and set as the starting count
       // Limit is set to 49 so as not to exceed the 57 total cards (if in case 49 was selected and added by 8 - the number of card pairs needed)
@@ -114,7 +114,7 @@ const useLetsBegin = ({ dimensions }) => {
   };
 
   // Return Items for Consumption
-  return [deck, setDeck, startGame, dimensions];
+  return [deck, setDeck, startGame];
 };
 
 export default useLetsBegin;

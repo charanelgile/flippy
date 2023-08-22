@@ -15,13 +15,7 @@ import Card from "./Card";
 import useCountdownTimer from "../../hooks/useCountdownTimer";
 import useCardHandler from "../../hooks/useCardHandler";
 
-function Cards3x4({
-  deck,
-  setDeck,
-  dimensions,
-  currentLevel,
-  setCurrentLevel,
-}) {
+function Cards3x4({ level, dimensions, deck, setDeck }) {
   const [countdown, mm, ss] = useCountdownTimer({ min: 0, sec: 30 });
 
   const [
@@ -32,8 +26,6 @@ function Cards3x4({
     score,
     setScore,
     totalScore,
-    setTotalScore,
-    personalBest,
     isLevelComplete,
     setIsLevelComplete,
     statChecker,
@@ -62,9 +54,9 @@ function Cards3x4({
         deck[previous].stat = "correct";
 
         setScore(score + 250);
-        setTotalScore(score + 250);
+        // setTotalScore(score + 250);
 
-        console.log(totalScore);
+        // console.log(totalScore);
 
         setFlipCount(flipCount + 1);
 
@@ -76,8 +68,8 @@ function Cards3x4({
         // every() will only return true if all elements of the deck satisfy the conditions on statChecker
         if (deck.every(statChecker)) {
           setIsLevelComplete(!isLevelComplete);
-          setCurrentLevel(currentLevel + 1);
-          computeFinalScore(mm, ss, score);
+          // setCurrentLevel(currentLevel + 1);
+          computeFinalScore(mm, ss);
         }
       }
     } else {
@@ -195,7 +187,7 @@ function Cards3x4({
         {deck.map((card, index) => (
           <Card
             key={index}
-            cardID={index}
+            cardIndex={index}
             cardImage={card.img}
             cardStatus={card.stat}
             cardFlipper={cardFlipper}
