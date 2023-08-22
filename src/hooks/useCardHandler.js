@@ -8,17 +8,15 @@ const useCardHandler = ({ min, sec }) => {
 
   const [previous, setPrevious] = useState(-1);
   const [flipCount, setFlipCount] = useState(0);
-  const [score, setScore] = useState(0);
-  const [totalScore, setTotalScore] = useState(0);
-  const [personalBest, setPersonalBest] = useState(score);
   const [isLevelComplete, setIsLevelComplete] = useState(false);
+  const [score, setScore] = useState(playerSession[0].playerCurrentScore);
 
-  let highScore = 0;
+  let totalScore = playerSession[0].playerTotalScore;
+  let highScore = playerSession[0].playerHighScore;
+
+  let dimensions = playerSession[0].playerGridDimensions;
 
   let goToNextLevel = useNavigate();
-
-  let carriedData = [];
-  let testData = {};
 
   // Status Checker (If all cards in the deck has been tagged "Correct")
   const statChecker = (element, index, array) => {
@@ -64,6 +62,8 @@ const useCardHandler = ({ min, sec }) => {
       playerGridDimensions: "grid4x4",
     };
 
+    console.log(`New Level: ${updatedPlayerSession.playerLevel}`);
+
     setPlayerSession([updatedPlayerSession]);
 
     // testData = {
@@ -87,7 +87,8 @@ const useCardHandler = ({ min, sec }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         goToNextLevel(
-          "/Level" + JSON.parse(localStorage.getItem("currentLevel"))
+          // "/"
+          `/Level${updatedPlayerSession.playerLevel}`
           // {
           //   state: carriedData,
           // }
@@ -113,6 +114,7 @@ const useCardHandler = ({ min, sec }) => {
     setIsLevelComplete,
     statChecker,
     computeFinalScore,
+    dimensions,
   ];
 };
 

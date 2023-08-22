@@ -8,7 +8,7 @@ import StartGame from "../components/player/StartGame";
 import { PlayerSessionContext } from "../contexts/PlayerSessionContext";
 
 export default function Home() {
-  const { playerSession, setPlayerSession } = useContext(PlayerSessionContext);
+  const { playerSession } = useContext(PlayerSessionContext);
 
   return (
     <div>

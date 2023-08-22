@@ -1,74 +1,67 @@
-// Library Imports
 import React from "react";
+import Card from "./Card";
+import Swal from "sweetalert2";
+import useCountdownTimer from "../../hooks/useCountdownTimer";
+import useComputeScores from "../useComputeScores";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAward,
+  // faTrophy,
   faStar,
+  faRightLeft,
   faHourglassStart,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLocation } from "react-router-dom";
-import Swal from "sweetalert2";
 
-// Page & Component Imports
-import Card from "./Card";
-
-// Custom Hook Import
-import useCountdownTimer from "../../hooks/useCountdownTimer";
-import useCardHandler from "../../hooks/useCardHandler";
-import useLetsBegin from "../../hooks/useLetsBegin";
-
-const Cards4x4 = ({ level, dimensions, deck, setDeck }) => {
-  const dataFromPreviousLevel = useLocation();
-
-  const [countdown, mm, ss] = useCountdownTimer({ min: 0, sec: 40 });
+const Cards3x4 = ({ deck, setDeck, dimensions }) => {
+  const [countdown, mm, ss] = useCountdownTimer({ min: 0, sec: 30 });
 
   const [
     previous,
     setPrevious,
     flipCount,
     setFlipCount,
-    score,
-    setScore,
-    totalScore,
     isLevelComplete,
     setIsLevelComplete,
+    currentScore,
+    setCurrentScore,
+    totalScore,
+    setTotalScore,
+    highScore,
+    setHighScore,
     statChecker,
-    computeFinalScore,
-    // dimensions,
-  ] = useCardHandler({ min: mm, sec: ss });
+    computeScores,
+  ] = useComputeScores({
+    min: mm,
+    sec: ss,
+  });
 
-  // const [deck, setDeck] = useLetsBegin({
-  //   gridDimensions: dimensions,
-  // });
-
-  // console.log(score);
-  // console.log(totalScore);
-
-  // Card Flipper (Click Handler)
-  function cardFlipper(idx) {
+  // Card Flipper
+  const cardFlipper = (index) => {
     if (previous === -1) {
       setFlipCount(flipCount + 1);
 
-      deck[idx].stat = "shown";
+      deck[index].stat = "shown";
 
       setDeck([...deck]);
-      setPrevious(idx);
+      setPrevious(index);
     } else {
-      cardTagger(idx);
+      cardTagger(index);
     }
-  }
+  };
 
   // Card Tagger (Correct or Wrong)
-  function cardTagger(current) {
+  const cardTagger = (current) => {
     if (deck[current].id === deck[previous].id) {
       if (deck[current].type !== deck[previous].type) {
         deck[current].stat = "correct";
         deck[previous].stat = "correct";
 
-        setScore(score + 250);
-        // setTotalScore(score + 250);
+        setCurrentScore(currentScore + 250);
 
-        // console.log(totalScore);
+        setTotalScore(totalScore + 250);
+
+        if (totalScore > highScore) {
+          setHighScore(totalScore);
+        }
 
         setFlipCount(flipCount + 1);
 
@@ -80,8 +73,7 @@ const Cards4x4 = ({ level, dimensions, deck, setDeck }) => {
         // every() will only return true if all elements of the deck satisfy the conditions on statChecker
         if (deck.every(statChecker)) {
           setIsLevelComplete(!isLevelComplete);
-          // setCurrentLevel(currentLevel + 1);
-          computeFinalScore(mm, ss);
+          computeScores(mm, ss);
         }
       }
     } else {
@@ -101,7 +93,7 @@ const Cards4x4 = ({ level, dimensions, deck, setDeck }) => {
         setPrevious(-1);
       }, 500);
     }
-  }
+  };
 
   // Level Failed
   if (countdown === "00:00" && isLevelComplete === false) {
@@ -114,9 +106,17 @@ const Cards4x4 = ({ level, dimensions, deck, setDeck }) => {
   return (
     <div>
       <div className="d-flex justify-content-evenly mx-auto">
+        {/* <div className="divMechanics bg-warning mb-3">
+          <p className="m-0 px-3 border border-3 rounded">
+            <FontAwesomeIcon icon={faTrophy} />
+            &nbsp;&nbsp;
+            <span className="trackers">{highScore}</span>
+          </p>
+        </div> */}
+
         <div className="divMechanics bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
-            <FontAwesomeIcon icon={faAward} />
+            <FontAwesomeIcon icon={faStar} />
             &nbsp;&nbsp;
             <span className="trackers">{totalScore}</span>
           </p>
@@ -124,17 +124,27 @@ const Cards4x4 = ({ level, dimensions, deck, setDeck }) => {
 
         <div className="divMechanics bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
-            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faRightLeft} />
             &nbsp;&nbsp;
-            <span className="trackers">{score}</span>
+            <span className="trackers">{currentScore}</span>
           </p>
         </div>
 
         <div className="divMechanics bg-warning mb-3">
-          <p className="m-0 px-3 border border-3 rounded">
+          <p
+            className={
+              mm === 0 && ss < 11
+                ? "m-0 px-3 border border-3 rounded text-danger"
+                : "m-0 px-3 border border-3 rounded"
+            }>
             <FontAwesomeIcon icon={faHourglassStart} />
             &nbsp;&nbsp;
-            <span className="trackers">{countdown}</span>
+            <span
+              className={
+                mm === 0 && ss < 11 ? "trackers text-danger" : "trackers"
+              }>
+              {countdown}
+            </span>
           </p>
         </div>
       </div>
@@ -154,4 +164,4 @@ const Cards4x4 = ({ level, dimensions, deck, setDeck }) => {
   );
 };
 
-export default Cards4x4;
+export default Cards3x4;
