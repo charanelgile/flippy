@@ -176,3 +176,62 @@
   /* Prevent the cards from being flipped when the timer runs out */
   pointer-events: none;
 }
+
+.swal2-popup {
+  background: url("../flippy-background-mono.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+#swal2-title {
+  text-transform: lowercase;
+  font-family: "GAMERIA";
+  font-size: 40px;
+  letter-spacing: 2px;
+  /* color: rgb(55, 160, 60) !important; */
+  color: rgb(225, 155, 10) !important;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(222, 222, 222);
+  vertical-align: middle;
+}
+
+#swal2-html-container {
+  font-size: 27px;
+  /* color: rgb(100, 100, 100) !important; */
+}
+
+.swal2-styled {
+  text-transform: uppercase;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 18px !important;
+  /* letter-spacing: 1px; */
+}
+
+.swal2-confirm {
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 200, 20),
+    rgb(225, 155, 10),
+    rgb(205, 130, 10)
+  ) !important;
+  border: 3px solid rgb(205, 130, 10) !important;
+}
+
+.swal2-cancel {
+  background: linear-gradient(
+    to bottom,
+    rgb(145, 80, 126),
+    rgb(110, 55, 75)
+  ) !important;
+  border: 3px solid rgb(110, 55, 75) !important;
+}
+
+.swal2-deny {
+  background: linear-gradient(
+    to bottom,
+    rgb(75, 185, 75),
+    rgb(41, 127, 41)
+  ) !important;
+  border: 3px solid rgb(41, 127, 41) !important;
+}

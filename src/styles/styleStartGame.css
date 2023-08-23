@@ -28,7 +28,7 @@
 }
 
 .sectionStartGame small {
-  font-size: 20px;
-  font-family: "GAMERIA";
+  font-size: 25px;
+  /* font-family: "GAMERIA"; */
   color: rgb(110, 55, 75);
 }

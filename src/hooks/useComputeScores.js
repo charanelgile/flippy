@@ -81,21 +81,27 @@ const useComputeScores = ({ min, sec }) => {
     setCurrentSession(playerProgress);
 
     Swal.fire({
-      title: "Congratulations",
+      icon: "success",
+      iconColor: "rgb(225, 155, 10)",
+      title: `Congratulations&#127881`,
+      text: `You have completed Level ${currentSession[0].playerLevel}`,
+      width: 650,
+      confirmButtonText: `<i class="fa-solid fa-angles-right"></i>&nbsp;&nbsp;Next Level`,
       showDenyButton: true,
+      denyButtonText: `<i class="fa-solid fa-repeat"></i>&nbsp;&nbsp;Retry`,
       showCancelButton: true,
-      confirmButtonText: "Next Level",
-      denyButtonText: "Retry",
-      cancelButtonText: "Ranking",
+      cancelButtonText: `<i class="fa-solid fa-trophy"></i>&nbsp;&nbsp;Ranking`,
     }).then((result) => {
       if (result.isConfirmed) {
         // Swal.fire("Go to Next Level", "", "success");
         window.location.reload();
       } else if (result.isDenied) {
-        Swal.fire("Retry Level", "", "info");
+        Swal.fire("Retry", "This should reload previous level's data", "");
+        window.location.reload();
       } else {
         // Swal.fire("This should go to the Ranking", "", "warning");
         goToRanking("/Ranking");
+        window.location.reload();
       }
     });
   };
