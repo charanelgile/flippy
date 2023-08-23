@@ -235,3 +235,7 @@
   ) !important;
   border: 3px solid rgb(41, 127, 41) !important;
 }
+
+.swal2-close {
+  color: rgb(110, 55, 75) !important;
+}

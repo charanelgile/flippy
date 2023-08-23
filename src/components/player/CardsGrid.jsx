@@ -109,8 +109,18 @@ const CardsGrid = ({ minutes, seconds, deck, setDeck, dimensions }) => {
   // Level Failed
   if (countdown === "00:00" && isLevelComplete === false) {
     Swal.fire({
-      title: "Game Over",
-      text: "You failed to complete this level.",
+      icon: "error",
+      iconColor: "rgb(210, 15, 15)",
+      title: `&#128078&#127997;&#128078&#127997;&#128078&#127997;<br/>Game Over`,
+      text: "You failed to complete this level",
+      showConfirmButton: false,
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: `<i class="fa-solid fa-repeat"></i>&nbsp;&nbsp;Retry`,
+    }).then((result) => {
+      if (result.isDenied) {
+        window.location.reload();
+      }
     });
   }
 
