@@ -63,27 +63,10 @@ const useComputeScores = ({ min, sec }) => {
 
     console.log(`Personal Best: ${highScoreToStore}`);
 
-    currentSession[0].playerGridDimensions.shift();
-
-    const playerProgress = [
-      {
-        playerID: currentSession[0].playerID,
-        playerName: currentSession[0].playerName,
-        playerCodename: currentSession[0].playerCodename,
-        playerEmail: currentSession[0].playerEmail,
-        playerTotalScore: totalScoreToStore,
-        playerHighScore: highScoreToStore,
-        playerLevel: currentSession[0].playerLevel + 1,
-        playerGridDimensions: currentSession[0].playerGridDimensions,
-      },
-    ];
-
-    setCurrentSession(playerProgress);
-
     Swal.fire({
       icon: "success",
       iconColor: "rgb(225, 155, 10)",
-      title: `Congratulations&#127881`,
+      title: `&#127881&#127881&#127881<br/>Congratulations`,
       text: `You have completed Level ${currentSession[0].playerLevel}`,
       width: 650,
       confirmButtonText: `<i class="fa-solid fa-angles-right"></i>&nbsp;&nbsp;Next Level`,
@@ -93,10 +76,25 @@ const useComputeScores = ({ min, sec }) => {
       cancelButtonText: `<i class="fa-solid fa-trophy"></i>&nbsp;&nbsp;Ranking`,
     }).then((result) => {
       if (result.isConfirmed) {
-        // Swal.fire("Go to Next Level", "", "success");
+        currentSession[0].playerGridDimensions.shift();
+
+        const playerProgress = [
+          {
+            playerID: currentSession[0].playerID,
+            playerName: currentSession[0].playerName,
+            playerCodename: currentSession[0].playerCodename,
+            playerEmail: currentSession[0].playerEmail,
+            playerTotalScore: totalScoreToStore,
+            playerHighScore: highScoreToStore,
+            playerLevel: currentSession[0].playerLevel + 1,
+            playerGridDimensions: currentSession[0].playerGridDimensions,
+          },
+        ];
+
+        setCurrentSession(playerProgress);
+
         window.location.reload();
       } else if (result.isDenied) {
-        Swal.fire("Retry", "This should reload previous level's data", "");
         window.location.reload();
       } else {
         // Swal.fire("This should go to the Ranking", "", "warning");

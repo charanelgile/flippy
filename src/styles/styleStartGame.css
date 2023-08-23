@@ -13,8 +13,12 @@
   text-transform: lowercase;
 }
 
+.btnStartGame:active {
+  color: rgb(110, 55, 75) !important;
+}
+
 .btnStartGame:hover {
-  color: rgb(110, 55, 75);
+  color: rgb(110, 55, 75) !important;
   background: transparent;
   border: none;
 }
@@ -23,7 +27,8 @@
   border-color: rgb(255, 200, 20) !important;
 }
 
-.btnStartGame p:hover {
+.btnStartGame p:hover,
+.btnStartGame p:active {
   border: 4px solid rgb(116, 64, 83) !important;
 }
 
