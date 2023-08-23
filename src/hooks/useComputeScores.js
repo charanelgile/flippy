@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { useContext, useState } from "react";
-import { CurrentSessionContext } from "./CurrentSessionContext";
+import { CurrentSessionContext } from "../contexts/CurrentSessionContext";
 
 const useComputeScores = ({ min, sec }) => {
   const { currentSession, setCurrentSession } = useContext(

@@ -1,8 +1,6 @@
+// Library Imports
 import React from "react";
-import Card from "./Card";
 import Swal from "sweetalert2";
-import useCountdownTimer from "../../hooks/useCountdownTimer";
-import useComputeScores from "../useComputeScores";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   // faTrophy,
@@ -10,6 +8,13 @@ import {
   faRightLeft,
   faHourglassStart,
 } from "@fortawesome/free-solid-svg-icons";
+
+// Custom Hook Imports
+import useComputeScores from "../../../hooks/useComputeScores";
+import useCountdownTimer from "../../../hooks/useCountdownTimer";
+
+// Page & Component Import
+import Card from "./Card";
 
 const Cards3x4 = ({ deck, setDeck, dimensions }) => {
   const [countdown, mm, ss] = useCountdownTimer({ min: 0, sec: 30 });
@@ -74,6 +79,10 @@ const Cards3x4 = ({ deck, setDeck, dimensions }) => {
         if (deck.every(statChecker)) {
           setIsLevelComplete(!isLevelComplete);
           computeScores(mm, ss);
+
+          // Empty the deck again to render the Start Game Button
+          // and not go straight to the Next Level
+          setDeck([]);
         }
       }
     } else {
