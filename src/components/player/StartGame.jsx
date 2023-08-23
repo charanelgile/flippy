@@ -29,10 +29,17 @@ const StartGame = () => {
         <div
           id="containerStartGame"
           className="d-flex justify-content-center align-items-center">
-          <button className="btnStartGame btn btn-warning" onClick={startGame}>
-            <p className="m-0 py-1 px-3 border border-3 rounded">Start Game</p>
+          <section className="sectionStartGame d-flex flex-column bg-warning p-2 rounded">
+            <button
+              className="btnStartGame btn btn-warning"
+              onClick={startGame}>
+              <p className="m-0 py-1 px-3 border border-3 rounded">
+                Start Game
+              </p>
+            </button>
+
             <small>Level {currentSession[0].playerLevel}</small>
-          </button>
+          </section>
         </div>
       ) : currentSession[0].playerGridDimensions[0] === "grid3x4" ? (
         <div id="containerCardGrid">

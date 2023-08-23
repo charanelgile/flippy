@@ -121,6 +121,10 @@
   }
 }
 
+.card.active img {
+  transform: scale(1);
+}
+
 .card.active {
   transform: rotateY(0);
 }
@@ -139,26 +143,36 @@
   border: 7px solid rgb(255, 25, 85);
 }
 
-.card.active img {
-  transform: scale(1);
-}
-
-.divMechanics {
+.divTrackers {
   padding: 9px;
   border-radius: 8px;
-  color: rgb(94, 38, 88) !important;
+  color: rgb(110, 55, 75) !important; /* Controls the icon colors */
 }
 
-.divMechanics p {
+.divTrackers p {
   font-size: 20px;
   letter-spacing: 1px;
-  border-color: rgb(94, 38, 88) !important;
+  border-color: rgb(110, 55, 75) !important; /* Controls the border colors */
 }
 
 .trackers {
   font-size: 27px;
   font-family: "GAMERIA";
-  color: rgb(94, 38, 88);
+  color: rgb(110, 55, 75); /* Controls the value colors */
   position: relative;
   top: 2px;
+}
+
+.last10seconds {
+  color: white !important;
+  background-color: red !important;
+}
+
+#last10seconds {
+  border-color: white !important;
+}
+
+.gameOver {
+  /* Prevent the cards from being flipped when the timer runs out */
+  pointer-events: none;
 }

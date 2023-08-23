@@ -79,6 +79,10 @@ const Cards4x4 = ({ deck, setDeck, dimensions }) => {
         if (deck.every(statChecker)) {
           setIsLevelComplete(!isLevelComplete);
           computeScores(mm, ss);
+
+          // Empty the deck again to render the Start Game Button
+          // and not go straight to the Next Level
+          setDeck([]);
         }
       }
     } else {
@@ -111,7 +115,7 @@ const Cards4x4 = ({ deck, setDeck, dimensions }) => {
   return (
     <div>
       <div className="d-flex justify-content-evenly mx-auto">
-        {/* <div className="divMechanics bg-warning mb-3">
+        {/* <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faTrophy} />
             &nbsp;&nbsp;
@@ -119,7 +123,7 @@ const Cards4x4 = ({ deck, setDeck, dimensions }) => {
           </p>
         </div> */}
 
-        <div className="divMechanics bg-warning mb-3">
+        <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faStar} />
             &nbsp;&nbsp;
@@ -127,7 +131,7 @@ const Cards4x4 = ({ deck, setDeck, dimensions }) => {
           </p>
         </div>
 
-        <div className="divMechanics bg-warning mb-3">
+        <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faRightLeft} />
             &nbsp;&nbsp;
@@ -135,7 +139,7 @@ const Cards4x4 = ({ deck, setDeck, dimensions }) => {
           </p>
         </div>
 
-        <div className="divMechanics bg-warning mb-3">
+        <div className="divTrackers bg-warning mb-3">
           <p
             className={
               mm === 0 && ss < 11

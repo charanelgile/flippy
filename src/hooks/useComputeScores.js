@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { CurrentSessionContext } from "../contexts/CurrentSessionContext";
 
@@ -20,6 +21,8 @@ const useComputeScores = ({ min, sec }) => {
   const [highScore, setHighScore] = useState(currentSession[0].playerHighScore);
 
   let highScoreToStore = currentSession[0].playerHighScore;
+
+  let goToRanking = useNavigate();
 
   // Status Checker (If all cards in the deck has been tagged "Correct")
   const statChecker = (element, index, array) => {
@@ -86,11 +89,13 @@ const useComputeScores = ({ min, sec }) => {
       cancelButtonText: "Ranking",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Go to Next Level", "", "success");
+        // Swal.fire("Go to Next Level", "", "success");
+        window.location.reload();
       } else if (result.isDenied) {
         Swal.fire("Retry Level", "", "info");
       } else {
-        Swal.fire("This should go to the Ranking", "", "warning");
+        // Swal.fire("This should go to the Ranking", "", "warning");
+        goToRanking("/Ranking");
       }
     });
   };

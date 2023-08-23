@@ -14,8 +14,8 @@ import StartGame from "./components/player/StartGame";
 // Style Imports
 import "./styles/style.css";
 import "./styles/styleHeader.css";
-import "./styles/styleHome.css";
-import "./styles/styleCardGrid.css";
+import "./styles/styleStartGame.css";
+import "./styles/styleCards.css";
 import "./styles/styleRank.css";
 
 function App() {

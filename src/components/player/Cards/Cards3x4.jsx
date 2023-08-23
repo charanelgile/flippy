@@ -6,7 +6,9 @@ import {
   // faTrophy,
   faStar,
   faRightLeft,
+  faHourglassEnd,
   faHourglassStart,
+  faHourglassEmpty,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Custom Hook Imports
@@ -115,7 +117,7 @@ const Cards3x4 = ({ deck, setDeck, dimensions }) => {
   return (
     <div>
       <div className="d-flex justify-content-evenly mx-auto">
-        {/* <div className="divMechanics bg-warning mb-3">
+        {/* <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faTrophy} />
             &nbsp;&nbsp;
@@ -123,7 +125,7 @@ const Cards3x4 = ({ deck, setDeck, dimensions }) => {
           </p>
         </div> */}
 
-        <div className="divMechanics bg-warning mb-3">
+        <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faStar} />
             &nbsp;&nbsp;
@@ -131,7 +133,7 @@ const Cards3x4 = ({ deck, setDeck, dimensions }) => {
           </p>
         </div>
 
-        <div className="divMechanics bg-warning mb-3">
+        <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faRightLeft} />
             &nbsp;&nbsp;
@@ -139,18 +141,26 @@ const Cards3x4 = ({ deck, setDeck, dimensions }) => {
           </p>
         </div>
 
-        <div className="divMechanics bg-warning mb-3">
+        <div
+          className={
+            mm === 0 && ss <= 9
+              ? "divTrackers bg-warning mb-3 last10seconds"
+              : "divTrackers bg-warning mb-3"
+          }>
           <p
-            className={
-              mm === 0 && ss < 11
-                ? "m-0 px-3 border border-3 rounded text-danger"
-                : "m-0 px-3 border border-3 rounded"
-            }>
-            <FontAwesomeIcon icon={faHourglassStart} />
+            id={mm === 0 && ss <= 9 ? "last10seconds" : ""}
+            className="m-0 px-3 border border-3 rounded">
+            {countdown === "00:00" ? (
+              <FontAwesomeIcon icon={faHourglassEmpty} />
+            ) : mm === 0 && ss <= 9 ? (
+              <FontAwesomeIcon icon={faHourglassEnd} />
+            ) : (
+              <FontAwesomeIcon icon={faHourglassStart} />
+            )}
             &nbsp;&nbsp;
             <span
               className={
-                mm === 0 && ss < 11 ? "trackers text-danger" : "trackers"
+                mm === 0 && ss <= 9 ? "trackers last10seconds" : "trackers"
               }>
               {countdown}
             </span>
@@ -158,7 +168,13 @@ const Cards3x4 = ({ deck, setDeck, dimensions }) => {
         </div>
       </div>
 
-      <div id="divCardGrid3x4" className={"divCardGrid " + dimensions}>
+      <div
+        id="divCardGrid3x4"
+        className={
+          countdown === "00:00"
+            ? "divCardGrid " + dimensions + " gameOver"
+            : "divCardGrid " + dimensions
+        }>
         {deck.map((card, index) => (
           <Card
             key={index}
