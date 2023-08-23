@@ -8,6 +8,9 @@ const useDeck = ({ dimensions }) => {
 
   const [deck, setDeck] = useState([]);
 
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
   let startingIndexCount = 0;
   let endingIndexCount = 0;
   let pairs = [];
@@ -20,6 +23,9 @@ const useDeck = ({ dimensions }) => {
       // Limit is set to 49 so as not to exceed the 57 total cards (if in case 49 was selected and added by 8 - the number of card pairs needed)
       // The ending count is equal to the starting count added by the number of card pairs needed
       case "grid4x4":
+        setMinutes(0);
+        setSeconds(45);
+
         startingIndexCount = Math.floor(Math.random() * (49 - 1) + 1);
         endingIndexCount = startingIndexCount + 8;
 
@@ -32,6 +38,9 @@ const useDeck = ({ dimensions }) => {
       // Limit is set to 47 so as not to exceed the 57 total cards (if in case 47 was selected and added by 10 - the number of card pairs needed)
       // The ending count is equal to the starting count added by the number of card pairs needed
       case "grid4x5":
+        setMinutes(1);
+        setSeconds(0);
+
         startingIndexCount = Math.floor(Math.random() * (47 - 1) + 1);
         endingIndexCount = startingIndexCount + 10;
 
@@ -44,6 +53,9 @@ const useDeck = ({ dimensions }) => {
       // Limit is set to 45 so as not to exceed the 57 total cards (if in case 45 was selected and added by 12 - the number of card pairs needed)
       // The ending count is equal to the starting count added by the number of card pairs needed
       case "grid4x6":
+        setMinutes(1);
+        setSeconds(25);
+
         startingIndexCount = Math.floor(Math.random() * (45 - 1) + 1);
         endingIndexCount = startingIndexCount + 12;
 
@@ -53,6 +65,9 @@ const useDeck = ({ dimensions }) => {
         break;
       // dimensions = 5x6
       case "grid5x6":
+        setMinutes(1);
+        setSeconds(45);
+
         startingIndexCount = Math.floor(Math.random() * (42 - 1) + 1);
         endingIndexCount = startingIndexCount + 15;
 
@@ -62,6 +77,9 @@ const useDeck = ({ dimensions }) => {
         break;
       // dimensions = 6x6
       case "grid6x6":
+        setMinutes(2);
+        setSeconds(0);
+
         startingIndexCount = Math.floor(Math.random() * (39 - 1) + 1);
         endingIndexCount = startingIndexCount + 18;
 
@@ -71,6 +89,9 @@ const useDeck = ({ dimensions }) => {
         break;
       // dimensions = 6x7
       case "grid6x7":
+        setMinutes(2);
+        setSeconds(15);
+
         startingIndexCount = Math.floor(Math.random() * (36 - 1) + 1);
         endingIndexCount = startingIndexCount + 21;
 
@@ -80,6 +101,9 @@ const useDeck = ({ dimensions }) => {
         break;
       // dimensions = 6x8
       case "grid6x8":
+        setMinutes(2);
+        setSeconds(45);
+
         startingIndexCount = Math.floor(Math.random() * (33 - 1) + 1);
         endingIndexCount = startingIndexCount + 24;
 
@@ -89,6 +113,9 @@ const useDeck = ({ dimensions }) => {
         break;
       // dimensions = 3x4 [default]
       default:
+        setMinutes(0);
+        setSeconds(30);
+
         startingIndexCount = Math.floor(Math.random() * (51 - 1) + 1);
         endingIndexCount = startingIndexCount + 6;
 
@@ -114,7 +141,7 @@ const useDeck = ({ dimensions }) => {
   };
 
   // Return Items for Consumption of Components
-  return [deck, setDeck, startGame];
+  return [minutes, seconds, deck, setDeck, startGame];
 };
 
 export default useDeck;
