@@ -7,61 +7,76 @@ function SignUpPlayer() {
     <div className="containerSignInSignUp container-fluid bg-light text-start rounded">
       <h3 className="formHeaders text-center">Create an Account</h3>
 
-      <form action="">
+      <form action="http://localhost:4000/player/signup" method="POST">
         <fieldset>
+          <div className="d-flex justify-content-between mb-2">
+            <div className="w-100 me-2">
+              <label htmlFor="player_first_name">First Name:</label>
+
+              <input
+                id="player_first_name"
+                name="player_first_name"
+                type="text"
+                className="form-control shadow-none"
+              />
+            </div>
+
+            <div className="w-100 ms-2">
+              <label htmlFor="player_last_name">Last Name:</label>
+
+              <input
+                id="player_last_name"
+                name="player_last_name"
+                type="text"
+                className="form-control shadow-none"
+              />
+            </div>
+          </div>
+
           <div>
-            <label htmlFor="FIRST_NAME">First Name:</label>
+            <label htmlFor="player_code_name">Code Name:</label>
 
             <input
-              id="FIRST_NAME"
-              name="FIRST_NAME"
+              id="player_code_name"
+              name="player_code_name"
               type="text"
-              className="form-control shadow-none mb-3"
+              className="form-control shadow-none mb-2"
             />
           </div>
 
           <div>
-            <label htmlFor="LAST_NAME">Last Name:</label>
+            <label htmlFor="player_email">Email:</label>
 
             <input
-              id="LAST_NAME"
-              name="LAST_NAME"
-              type="text"
-              className="form-control shadow-none mb-3"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="EMAIL">Email:</label>
-
-            <input
-              id="EMAIL"
-              name="EMAIL"
+              id="player_email"
+              name="player_email"
               type="email"
-              className="form-control shadow-none mb-3"
+              className="form-control shadow-none mb-2"
             />
           </div>
 
-          <div>
-            <label htmlFor="PASSWORD">Password:</label>
+          <div className="d-flex justify-content-between mb-3">
+            <div className="w-100 me-2">
+              <label htmlFor="player_password">Password:</label>
 
-            <input
-              id="PASSWORD"
-              name="PASSWORD"
-              type="password"
-              className="form-control shadow-none mb-3"
-            />
-          </div>
+              <input
+                id="player_password"
+                name="player_password"
+                type="password"
+                className="form-control shadow-none"
+              />
+            </div>
 
-          <div>
-            <label htmlFor="CONFIRM_PASSWORD">Confirm Password:</label>
+            <div className="w-100 ms-2">
+              <label htmlFor="player_confirm_password">Confirm Password:</label>
 
-            <input
-              id="CONFIRM_PASSWORD"
-              name="CONFIRM_PASSWORD"
-              type="password"
-              className="form-control shadow-none mb-3"
-            />
+              <input
+                id="player_confirm_password"
+                name="player_confirm_password"
+                type="password"
+                className="form-control shadow-none"
+              />
+            </div>
           </div>
 
           <div>
