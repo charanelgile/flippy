@@ -17,6 +17,7 @@ import "./styles/styleHeader.css";
 import "./styles/styleStartGame.css";
 import "./styles/styleCards.css";
 import "./styles/styleRank.css";
+import "./styles/styleSignInSignUp.css";
 
 function App() {
   return (

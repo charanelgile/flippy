@@ -7,9 +7,7 @@ function CustomLink({ to, children, ...props }) {
 
   return (
     <li className={isActive ? "active" : ""}>
-      <Link
-        to={to}
-        {...props}>
+      <Link to={to} {...props}>
         {children}
       </Link>
     </li>
@@ -19,23 +17,21 @@ function CustomLink({ to, children, ...props }) {
 const Header = () => {
   return (
     <nav className="nav">
-      <Link
-        to="/"
-        className="brand logo">
+      <Link to="/" className="brand logo">
         Flippy
       </Link>
 
       <ul>
-        <CustomLink
-          to="/Ranking"
-          className="brand navlink">
+        <CustomLink to="/Ranking" className="brand navlink">
           Ranking
         </CustomLink>
 
-        <CustomLink
-          to="/SignUpPlayer"
-          className="brand navlink">
+        <CustomLink to="/SignUpPlayer" className="brand navlink">
           Create an account
+        </CustomLink>
+
+        <CustomLink to="http://localhost:4000/" className="brand navlink">
+          Testing
         </CustomLink>
       </ul>
     </nav>
