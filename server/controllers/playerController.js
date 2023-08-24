@@ -33,9 +33,10 @@ exports.signup = (req, res) => {
         }
 
         if (results.length > 0) {
-          res.send(
-            "<div className='alert alert-danger text-center'>Email already existing</div>"
-          );
+          res.render("playerSignUp.hbs", {
+            message: "Email already existing",
+            category: "alert alert-danger text-center m-0",
+          });
         }
 
         db.query(
@@ -49,13 +50,15 @@ exports.signup = (req, res) => {
             }
 
             if (results.length > 0) {
-              res.send(
-                "<div className='alert alert-danger text-center'>Code Name already taken</div>"
-              );
+              res.render("playerSignUp.hbs", {
+                message: "Code Name already taken",
+                category: "alert alert-danger text-center m-0",
+              });
             } else if (player_password !== player_confirm_password) {
-              res.send(
-                "<div className='alert alert-danger text-center'>Passwords did not match</div>"
-              );
+              res.render("playerSignUp.hbs", {
+                message: "Passwords did not match",
+                category: "alert alert-danger text-center m-0",
+              });
             }
 
             let encryptedPassword = await bcrypt.hash(player_password, 8);
@@ -76,9 +79,10 @@ exports.signup = (req, res) => {
                 } else {
                   // console.log(results);
 
-                  return res.send(
-                    "<div className='alert alert-success text-center'>Account successfully created</div>"
-                  );
+                  return res.render("playerSignUp.hbs", {
+                    message: "Account created successfully",
+                    category: "alert alert-success text-center m-0",
+                  });
                 }
               }
             );

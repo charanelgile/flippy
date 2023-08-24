@@ -30,6 +30,10 @@ app.use(
 // Allow Cross-Origin Requests
 app.use(cors());
 
+// Configure the Express Server to Serve Static Files
+app.use(express.static(__dirname + "/styles"));
+app.use(express.static(__dirname + "/extras"));
+
 // Confiigure the Express Server to Listen to the specified Port
 app
   .listen(port, () => {
@@ -39,28 +43,19 @@ app
     console.log(`\nServer failed to start at Port ${port}\n${error.message}\n`);
   });
 
-// Routes
-app.use("/", require("./routes/index.js"));
-// app.use("/admin", require("./routes/adminRoutes.js"));
-// app.use("/player", require("./routes/playerRoutes.js"));
+// -----------------------------------------------------------------//
 
+// Player Controller
 const playerController = require("./controllers/playerController.js");
 
+// Player Routes - Sign Up / Sign In
 app.use("/player/signup", playerController.signup);
-
-// const router = express.Router();
-
-// // Player Sign In / Sign Up
-// router.post("/signup", playerController.signup);
-// router.post("/signin", playerController.signin);
-
-// // Player Edit / Update
-// router.get("/edit/:codename", playerController.edit);
-// router.post("/update", playerController.update);
-
-// // Player Delete / Remove
-// router.get("/delete/:codename", playerController.delete);
-// router.post("/remove", playerController.remove);
-
-// // Player Logout
-// router.get("/signout", playerController.signout);
+// app.use("/player/signin", playerController.signin);
+// // Player Routes - Edit / Update
+// app.use("/player/edit/:codename", playerController.edit);
+// app.use("/player/update", playerController.update);
+// // Player Routes - Delete / Remove
+// app.use("/player/delete/:codename", playerController.delete);
+// app.use("/player/remove", playerController.remove);
+// // Player Routes - Logout
+// app.use("/player/signout", playerController.signout);

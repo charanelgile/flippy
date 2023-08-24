@@ -29,10 +29,6 @@ const Header = () => {
         <CustomLink to="/SignUpPlayer" className="brand navlink">
           Create an account
         </CustomLink>
-
-        <CustomLink to="http://localhost:4000/" className="brand navlink">
-          Testing
-        </CustomLink>
       </ul>
     </nav>
   );

@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none !important;
+}
+
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+@font-face {
+  font-family: "GAMERIA";
+  src: local("GAMERIA"), url("/GAMERIA.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Jungle Adventurer";
+  src: local("Jungle Adventurer"),
+    url("/JungleAdventurer.ttf") format("truetype");
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#viewsBody {
+  font-family: "Jungle Adventurer" !important;
+  background: radial-gradient(
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("/flippy-background.jpg");
+}
