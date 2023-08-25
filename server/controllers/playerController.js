@@ -127,8 +127,7 @@ exports.signup = (req, res) => {
                   // console.log(results);
 
                   return res.render("playerSignIn.hbs", {
-                    messageSuccess:
-                      "Account created successfully<br/>You may now sign in",
+                    messageSuccess: "Account created successfully",
                     category:
                       "divSuccessMessage container-fluid d-flex justify-content-between align-items-center alert alert-success my-4 me-4",
                   });
