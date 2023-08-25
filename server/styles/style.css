@@ -26,12 +26,73 @@ body {
   height: 100%;
 }
 
-#viewsBody {
-  font-family: "Jungle Adventurer" !important;
+body {
+  font-family: "Jungle Adventurer";
   background: radial-gradient(
       rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 0.6)
     ),
     url("/flippy-background.jpg");
+}
+
+.nav {
+  height: 70px;
+  width: 100%;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(45, 25, 35);
+  margin-bottom: 1.5rem;
+}
+
+.brand {
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 200, 20),
+    rgb(225, 155, 10),
+    rgb(205, 130, 10)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo {
+  font-family: "GAMERIA" !important;
+  height: 100%;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  padding: 0 2rem !important;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgba(255, 255, 255, 0.5);
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  list-style: none;
+  font-size: 1.35rem;
+  font-family: "Jungle Adventurer";
+}
+
+.nav li.active {
+  background-color: rgb(75, 30, 65);
+}
+
+.nav li.active a {
+  border-bottom: 2px solid rgb(255, 200, 20);
+}
+
+.nav li:hover {
+  background-color: rgb(94, 38, 88);
+}
+
+.nav ul li a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
 }

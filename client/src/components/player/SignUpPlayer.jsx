@@ -7,71 +7,85 @@ function SignUpPlayer() {
     <div className="containerSignInSignUp container-fluid bg-light text-start rounded">
       <h3 className="formHeaders text-center">Create an Account</h3>
 
-      <form
-        action="http://localhost:4000/player/signup"
-        method="POST">
+      <form action="http://localhost:4000/player/signup" method="POST">
         <fieldset>
           <div className="d-flex justify-content-between mb-2">
             <div className="w-100 me-2">
-              <label htmlFor="player_first_name">First Name:</label>
+              <label htmlFor="player_first_name">
+                First Name: <span className="text-danger fs-3 m-0 p-0">*</span>
+              </label>
 
               <input
                 id="player_first_name"
                 name="player_first_name"
                 type="text"
                 className="form-control shadow-none"
+                required
               />
             </div>
 
             <div className="w-100 ms-2">
-              <label htmlFor="player_last_name">Last Name:</label>
+              <label htmlFor="player_last_name">
+                Last Name: <span className="text-danger fs-3 m-0 p-0">*</span>
+              </label>
 
               <input
                 id="player_last_name"
                 name="player_last_name"
                 type="text"
                 className="form-control shadow-none"
+                required
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="player_code_name">Code Name:</label>
+            <label htmlFor="player_code_name">
+              Code Name: <span className="text-danger fs-3 m-0 p-0">*</span>
+            </label>
 
             <input
               id="player_code_name"
               name="player_code_name"
               type="text"
               className="form-control shadow-none mb-2"
+              required
             />
           </div>
 
           <div>
-            <label htmlFor="player_email">Email:</label>
+            <label htmlFor="player_email">
+              Email: <span className="text-danger fs-3 m-0 p-0">*</span>
+            </label>
 
             <input
               id="player_email"
               name="player_email"
               type="email"
               className="form-control shadow-none mb-2"
+              required
             />
           </div>
 
           <div className="d-flex justify-content-between mb-3">
             <div className="w-100 me-2">
-              <label htmlFor="player_password">Password:</label>
+              <label htmlFor="player_password">
+                Password: <span className="text-danger fs-3 m-0 p-0">*</span>
+              </label>
 
               <input
                 id="player_password"
                 name="player_password"
                 type="password"
                 className="form-control shadow-none"
+                required
               />
             </div>
 
             <div className="w-100 ms-2">
               <label htmlFor="player_confirm_password">
                 Confirm Password:
+                <span className="text-danger fs-3 m-0 p-0">*</span>
               </label>
 
               <input
@@ -79,6 +93,7 @@ function SignUpPlayer() {
                 name="player_confirm_password"
                 type="password"
                 className="form-control shadow-none"
+                required
               />
             </div>
           </div>
@@ -96,7 +111,8 @@ function SignUpPlayer() {
 
       <div className="divLinkToSignIn container-fluid py-2 w-75 rounded">
         <p className="orSignIn text-center my-0 mx-3">
-          or <Link to={"/SignInPlayer"}>Sign in to your Account</Link>
+          or&nbsp;&nbsp;
+          <Link to={"/SignInPlayer"}>Sign in to your Account</Link>
         </p>
       </div>
     </div>

@@ -14,11 +14,19 @@
       crossorigin="anonymous"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    {{! Custom CSS }}
     <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="/styleSignInSignUp.css" />
   </head>
-  <body id="viewsBody">
+  <body>
+    {{! Nav Header }}
     <nav class="nav d-flex justify-content-between">
-      <a href="http://localhost:3000/" class="brand-logo">
+      <a href="http://localhost:3000/" class="brand logo">
         Flippy
       </a>
 
@@ -30,22 +38,148 @@
           >Ranking</a>
         </li>
 
-        <li>
+        <li class="active">
           <a
             href="http://localhost:3000/SignInPlayer"
             class="brand navlink"
-          >Login</a>
+          >Create an account</a>
         </li>
       </ul>
     </nav>
 
+    {{! Error Message Dialog Box }}
+    <div id="divDialogBox" class="d-flex justify-content-end text-end w-100">
+      {{#if message}}
+        <div id="dialogBox" class="{{category}}">
+          <p class="fs-5 my-0 me-3">{{message}}</p>
+
+          <p id="btnCloseDialogBox" class="btn text-danger fs-3 m-0">
+            <i class="bi bi-x-circle">
+            </i>
+          </p>
+        </div>
+      {{/if}}
+    </div>
+
+    {{! Player Sign Up Form }}
     <div
-      class="container-fluid d-flex justify-content-center align-items-center w-100"
+      class="containerSignInSignUp container-fluid bg-light text-start rounded"
     >
-      <div class="container-fluid w-50 my-3">
-        {{#if message}}
-          <p class="{{category}}">{{message}}</p>
-        {{/if}}
+      <h3 class="formHeaders text-center">Create an Account</h3>
+
+      <form action="/player/signup" method="POST">
+        <fieldset>
+          <div class="d-flex justify-content-between mb-2">
+            <div class="w-100 me-2">
+              <label htmlFor="player_first_name">
+                First Name:
+                <span class="text-danger fs-3 m-0 p-0">*</span>
+              </label>
+
+              <input
+                id="player_first_name"
+                name="player_first_name"
+                type="text"
+                class="form-control shadow-none"
+                required
+              />
+            </div>
+
+            <div class="w-100 ms-2">
+              <label htmlFor="player_last_name">
+                Last Name:
+                <span class="text-danger fs-3 m-0 p-0">*</span>
+              </label>
+
+              <input
+                id="player_last_name"
+                name="player_last_name"
+                type="text"
+                class="form-control shadow-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="player_code_name">
+              Code Name:
+              <span class="text-danger fs-3 m-0 p-0">*</span>
+            </label>
+
+            <input
+              id="player_code_name"
+              name="player_code_name"
+              type="text"
+              class="form-control shadow-none mb-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="player_email">
+              Email:
+              <span class="text-danger fs-3 m-0 p-0">*</span>
+            </label>
+
+            <input
+              id="player_email"
+              name="player_email"
+              type="email"
+              class="form-control shadow-none mb-2"
+              required
+            />
+          </div>
+
+          <div class="d-flex justify-content-between mb-3">
+            <div class="w-100 me-2">
+              <label htmlFor="player_password">
+                Password:
+                <span class="text-danger fs-3 m-0 p-0">*</span>
+              </label>
+
+              <input
+                id="player_password"
+                name="player_password"
+                type="password"
+                class="form-control shadow-none"
+                required
+              />
+            </div>
+
+            <div class="w-100 ms-2">
+              <label htmlFor="player_confirm_password">
+                Confirm Password:
+                <span class="text-danger fs-3 m-0 p-0">*</span>
+              </label>
+
+              <input
+                id="player_confirm_password"
+                name="player_confirm_password"
+                type="password"
+                class="form-control shadow-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              id="btnSignUpPlayer"
+              type="submit"
+              class="btnSignUp btn btn-warning w-100 mb-3"
+            >
+              Sign Up
+            </button>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="divLinkToSignIn container-fluid py-2 w-75 rounded">
+        <p class="orSignIn text-center my-0 mx-3">
+          or&nbsp;&nbsp;
+          <a href="http://localhost:3000/SignInPlayer">Sign in to your Account</a>
+        </p>
       </div>
     </div>
 
@@ -55,5 +189,19 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+
+    {{! Custom JS - Manually Close the Dialog Box }}
+    <script type="text/javascript">
+      document.getElementById("btnCloseDialogBox").addEventListener("click",
+      function () { document.getElementById("dialogBox").style.visibility =
+      "hidden"});
+    </script>
+
+    {{! Custom JS - Automatically Close the Dialog Box }}
+    <script type="text/javascript">
+      window.addEventListener("load", function () { setTimeout(function () {
+      document.getElementById("dialogBox").style.visibility = "hidden"}, 3000)
+      })
+    </script>
   </body>
 </html>

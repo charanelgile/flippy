@@ -1,5 +1,5 @@
 .containerSignInSignUp {
-  background: url("../flippy-background-mono.jpg");
+  background: url("/flippy-background-mono.jpg");
   background-position: center;
   color: rgb(110, 55, 75);
   margin: 2rem auto;
@@ -77,4 +77,35 @@
 .orSignIn a,
 .orSignUp a {
   color: rgb(55, 160, 60);
+}
+
+.btnBack {
+  text-transform: lowercase;
+  font-family: "GAMERIA";
+  letter-spacing: 1px;
+  color: rgb(170, 95, 10);
+  background: linear-gradient(to bottom, rgb(255, 200, 20), rgb(225, 155, 10));
+  border-bottom: 5px solid rgb(225, 155, 10);
+}
+
+.btnBack:hover {
+  color: rgb(110, 55, 75) !important;
+  border-bottom: 5px solid rgb(110, 55, 75) !important;
+}
+
+#divDialogBox {
+  position: absolute;
+  z-index: 2;
+}
+
+.divErrorMessage {
+  width: fit-content;
+  visibility: visible;
+  background-color: salmon;
+}
+
+.divSuccessMessage {
+  width: fit-content;
+  visibility: visible;
+  background-color: rgb(110, 195, 95);
 }

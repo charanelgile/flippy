@@ -29,9 +29,10 @@ exports.signup = (req, res) => {
       player_email === "" ||
       player_password === ""
     ) {
-      res.render("playerSignUp.hbs", {
+      return res.render("playerSignUp.hbs", {
         message: "All fields are required",
-        category: "alert alert-danger text-center m-0",
+        category:
+          "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
       });
     }
 
@@ -46,9 +47,10 @@ exports.signup = (req, res) => {
         }
 
         if (results.length > 0) {
-          res.render("playerSignUp.hbs", {
+          return res.render("playerSignUp.hbs", {
             message: "Email already existing",
-            category: "alert alert-danger text-center m-0",
+            category:
+              "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
           });
         }
 
@@ -63,14 +65,16 @@ exports.signup = (req, res) => {
             }
 
             if (results.length > 0) {
-              res.render("playerSignUp.hbs", {
+              return res.render("playerSignUp.hbs", {
                 message: "Code Name already taken",
-                category: "alert alert-danger text-center m-0",
+                category:
+                  "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
               });
             } else if (player_confirm_password !== player_password) {
-              res.render("playerSignUp.hbs", {
+              return res.render("playerSignUp.hbs", {
                 message: "Passwords did not match",
-                category: "alert alert-danger text-center m-0",
+                category:
+                  "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
               });
             }
 
@@ -94,7 +98,8 @@ exports.signup = (req, res) => {
 
                   return res.render("playerSignUp.hbs", {
                     message: "Account created successfully",
-                    category: "alert alert-success text-center m-0",
+                    category:
+                      "divSuccessMessage container-fluid d-flex justify-content-between align-items-center alert alert-success my-4 me-4",
                   });
                 }
               }
