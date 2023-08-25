@@ -162,7 +162,7 @@ exports.signin = (req, res) => {
           // console.log(results);
 
           if (!results.length > 0) {
-            res.render("playerSignIn.hbs", {
+            return res.render("playerSignIn.hbs", {
               messageError: "Code Name does not exist",
               category:
                 "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
@@ -170,7 +170,7 @@ exports.signin = (req, res) => {
           } else if (
             !(await bcrypt.compare(player_password, results[0].player_password))
           ) {
-            res.render("playerSignIn.hbs", {
+            return res.render("playerSignIn.hbs", {
               messageError: "Incorrect Password",
               category:
                 "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
@@ -193,7 +193,7 @@ exports.signin = (req, res) => {
             // console.log(token);
             // console.log(cookieOptions);
 
-            res.cookie("JWT", token, cookieOptions);
+            res.cookie("Flippy", token, cookieOptions);
 
             db.query(
               "SELECT * FROM players WHERE player_code_name = ?",
@@ -201,7 +201,7 @@ exports.signin = (req, res) => {
               (error, results) => {
                 console.log(results);
 
-                res.render("playerProfile.hbs", {
+                return res.render("playerProfile.hbs", {
                   playerProfile: results,
                   messageSuccess: "Sign in successful",
                   category:
@@ -218,4 +218,15 @@ exports.signin = (req, res) => {
   } catch (error) {
     console.log(`\n${error.message}\n`);
   }
+};
+
+// Player Sign Out
+exports.signout = (req, res) => {
+  res.clearCookie("Flippy").status(200);
+
+  return res.render("playerSignIn.hbs", {
+    messageSuccess: "Sign out successful",
+    category:
+      "divSuccessMessage container-fluid d-flex justify-content-between align-items-center alert alert-success my-4 me-4",
+  });
 };

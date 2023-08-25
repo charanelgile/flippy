@@ -20,11 +20,12 @@
 
     {{! Custom CSS }}
     <link rel="stylesheet" type="text/css" href="/style.css" />
-    <link rel="stylesheet" type="text/css" href="/styleSignInSignUp.css" />
+    <link rel="stylesheet" type="text/css" href="/styleErrorSuccess.css" />
+    <link rel="stylesheet" type="text/css" href="/stylePlayerProfile.css" />
   </head>
   <body>
-    {{! Nav Header }}
     {{#if playerProfile}}
+      {{! Nav Header }}
       <nav class="nav d-flex justify-content-between">
         <a href="http://localhost:3000/" class="brand logo">
           Flippy
@@ -73,6 +74,9 @@
             <p><b>Player High Score:</b> {{this.player_high_score}}</p>
           {{/each}}
         </div>
+
+        <a href="/player/signout" class="btnSignOut btn btn-danger px-3">Sign
+          out</a>
       </div>
     {{/if}}
 

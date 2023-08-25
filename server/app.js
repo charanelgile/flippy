@@ -48,14 +48,13 @@ app
 // Player Controller
 const playerController = require("./controllers/playerController.js");
 
-// Player Routes - Sign Up / Sign In
+// Player Routes - Sign Up / Sign In / Sign Out
 app.use("/player/signup", playerController.signup);
 app.use("/player/signin", playerController.signin);
+app.use("/player/signout", playerController.signout);
 // // Player Routes - Edit / Update
 // app.use("/player/edit/:codename", playerController.edit);
 // app.use("/player/update", playerController.update);
 // // Player Routes - Delete / Remove
 // app.use("/player/delete/:codename", playerController.delete);
 // app.use("/player/remove", playerController.remove);
-// // Player Routes - Logout
-// app.use("/player/signout", playerController.signout);
