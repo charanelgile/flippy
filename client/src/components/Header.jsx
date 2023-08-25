@@ -22,12 +22,12 @@ const Header = () => {
       </Link>
 
       <ul>
-        <CustomLink to="/Ranking" className="brand navlink">
-          Ranking
-        </CustomLink>
-
         <CustomLink to="/SignUpPlayer" className="brand navlink">
           Create an account
+        </CustomLink>
+
+        <CustomLink to="/Ranking" className="brand navlink">
+          Ranking
         </CustomLink>
       </ul>
     </nav>

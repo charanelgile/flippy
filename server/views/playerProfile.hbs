@@ -20,60 +20,81 @@
 
     {{! Custom CSS }}
     <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="/styleSignInSignUp.css" />
   </head>
   <body>
     {{! Nav Header }}
-    <nav class="nav d-flex justify-content-between">
-      <a href="http://localhost:3000/" class="brand logo">
-        Flippy
-      </a>
-
-      <ul>
-        <li>
-          <a
-            href="http://localhost:3000/Ranking"
-            class="brand navlink"
-          >Ranking</a>
-        </li>
-
-        <li>
-          <a
-            href="http://localhost:3000/SignUpPlayer"
-            class="brand navlink"
-          >Create an account</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div>
-    {{! Player Profile }}
     {{#if playerProfile}}
-      <div id="divDialogBox" class="d-flex justify-content-end text-end w-100">
-        <div id="dialogBox" class="{{category}}">
-          <p class="fs-5 my-0 me-3">{{messageSuccess}}</p>
+      <nav class="nav d-flex justify-content-between">
+        <a href="http://localhost:3000/" class="brand logo">
+          Flippy
+        </a>
 
-          <p id="btnCloseDialogBox" class="btn text-success fs-3 m-0">
-            <i class="bi bi-check-circle"></i>
-          </p>
+        <ul>
+          <li>
+            <a
+              href="{{navMenuLink}}"
+              class="brand navlink"
+            >{{navMenuOption}}</a>
+          </li>
+
+          <li>
+            <a
+              href="http://localhost:3000/Ranking"
+              class="brand navlink"
+            >Ranking</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+        {{! Player Profile }}
+        <div
+          id="divDialogBox"
+          class="d-flex justify-content-end text-end w-100"
+        >
+          <div id="dialogBox" class="{{category}}">
+            <p class="fs-5 my-0 me-3">{{messageSuccess}}</p>
+
+            <p id="btnCloseDialogBox" class="btn text-success fs-3 m-0">
+              <i class="bi bi-check-circle"></i>
+            </p>
+          </div>
+        </div>
+
+        <div class="text-warning fs-3">
+          {{#each playerProfile}}
+            <p><b>Player ID:</b> {{this.player_id}}</p>
+            <p><b>Player Full Name:</b>
+              {{this.player_first_name}}
+              {{this.player_last_name}}</p>
+            <p><b>Player Code Name:</b> {{this.player_code_name}}</p>
+            <p><b>Player Email:</b> {{this.player_email}}</p>
+            <p><b>Player High Score:</b> {{this.player_high_score}}</p>
+          {{/each}}
         </div>
       </div>
-
-      <div class="text-warning">
-      {{#each playerProfile}}
-        <p><br />Player ID:</b> {{this.player_id}}</p>
-        <p><br />Player Full Name:</b> {{this.player_first_name}} {{this.player_last_name}}</p>
-        <p><br />Player Code Name:</b> {{this.player_code_name}}</p>
-        <p><br />Player Email:</b> {{this.player_email}}</p>
-        <p><br />Player High Score:</b> {{this.player_high_score}}</p>
-      {{/each}}
-      </div>
     {{/if}}
-    </div>
 
+    {{! Bootstrap JS }}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+
+    {{! Custom JS - Manually Close the Dialog Box }}
+    <script type="text/javascript">
+      document.getElementById("btnCloseDialogBox").addEventListener("click",
+      function () { document.getElementById("dialogBox").style.visibility =
+      "hidden"});
+    </script>
+
+    {{! Custom JS - Automatically Close the Dialog Box }}
+    <script type="text/javascript">
+      window.addEventListener("load", function () { setTimeout(function () {
+      document.getElementById("dialogBox").style.visibility = "hidden"}, 2500)
+      })
+    </script>
   </body>
 </html>

@@ -78,27 +78,35 @@ exports.signup = (req, res) => {
               });
             }
 
-            // Separate every word on the first name and capitalize each beginning letter
-            let first_name = player_first_name.trim().split(" ");
-            for (let ctr = 0; ctr < first_name.length; ctr++) {
-              first_name[ctr] =
-                first_name[ctr].charAt(0).toUpperCase() +
-                first_name[ctr].slice(1).toLowerCase();
-            }
+            // // Separate every word on the first name and capitalize each beginning letter
+            // let first_name = player_first_name.trim().split(" ");
+            // for (let ctr = 0; ctr < first_name.length; ctr++) {
+            //   first_name[ctr] =
+            //     first_name[ctr].charAt(0).toUpperCase() +
+            //     first_name[ctr].slice(1).toLowerCase();
+            // }
 
-            // Join the first name back into 1 string
-            first_name.join(" ").toString();
+            // // Join the first name back into 1 string
+            // first_name.join(" ").toString();
 
-            // Separate every word on the last name and capitalize each beginning letter
-            let last_name = player_last_name.trim().split(" ");
-            for (let ctr = 0; ctr < last_name.length; ctr++) {
-              last_name[ctr] =
-                last_name[ctr].charAt(0).toUpperCase() +
-                last_name[ctr].slice(1).toLowerCase();
-            }
+            // // Separate every word on the last name and capitalize each beginning letter
+            // let last_name = player_last_name.trim().split(" ");
+            // for (let ctr = 0; ctr < last_name.length; ctr++) {
+            //   last_name[ctr] =
+            //     last_name[ctr].charAt(0).toUpperCase() +
+            //     last_name[ctr].slice(1).toLowerCase();
+            // }
 
-            // Join the last name back into 1 string
-            last_name.join(" ").toString();
+            // // Join the last name back into 1 string
+            // last_name.join(" ").toString();
+
+            let uppercaseFirstName = player_first_name.trim().toUpperCase();
+
+            let uppercaseLastName = player_last_name.trim().toUpperCase();
+
+            let lowercaseCodeName = player_code_name.trim().toLowerCase();
+
+            let lowercaseEmail = player_email.trim().toLowerCase();
 
             let encryptedPassword = await bcrypt.hash(player_password, 8);
             // console.log(encryptedPassword);
@@ -106,10 +114,10 @@ exports.signup = (req, res) => {
             db.query(
               "INSERT INTO players SET ?",
               {
-                player_first_name: first_name,
-                player_last_name: last_name,
-                player_code_name: player_code_name,
-                player_email: player_email,
+                player_first_name: uppercaseFirstName,
+                player_last_name: uppercaseLastName,
+                player_code_name: lowercaseCodeName,
+                player_email: lowercaseEmail,
                 player_password: encryptedPassword,
               },
               (error, results) => {
@@ -118,8 +126,9 @@ exports.signup = (req, res) => {
                 } else {
                   // console.log(results);
 
-                  return res.render("playerSignUp.hbs", {
-                    messageSuccess: "Account created successfully",
+                  return res.render("playerSignIn.hbs", {
+                    messageSuccess:
+                      "Account created successfully<br/>You may now sign in",
                     category:
                       "divSuccessMessage container-fluid d-flex justify-content-between align-items-center alert alert-success my-4 me-4",
                   });
@@ -198,6 +207,8 @@ exports.signin = (req, res) => {
                   messageSuccess: "Sign in successful",
                   category:
                     "divSuccessMessage container-fluid d-flex justify-content-between align-items-center alert alert-success my-4 me-4",
+                  navMenuOption: player_code_name,
+                  navMenuLink: "http://localhost:3000/",
                 });
               }
             );

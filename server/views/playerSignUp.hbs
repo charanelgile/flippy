@@ -30,18 +30,18 @@
       </a>
 
       <ul>
-        <li>
-          <a
-            href="http://localhost:3000/Ranking"
-            class="brand navlink"
-          >Ranking</a>
-        </li>
-
         <li class="active">
           <a
             href="http://localhost:3000/SignUpPlayer"
             class="brand navlink"
           >Create an account</a>
+        </li>
+
+        <li>
+          <a
+            href="http://localhost:3000/Ranking"
+            class="brand navlink"
+          >Ranking</a>
         </li>
       </ul>
     </nav>
@@ -54,16 +54,6 @@
 
           <p id="btnCloseDialogBox" class="btn text-danger fs-3 m-0">
             <i class="bi bi-x-circle"></i>
-          </p>
-        </div>
-      {{/if}}
-
-      {{#if messageSuccess}}
-        <div id="dialogBox" class="{{category}}">
-          <p class="fs-5 my-0 me-3">{{messageSuccess}}</p>
-
-          <p id="btnCloseDialogBox" class="btn text-success fs-3 m-0">
-            <i class="bi bi-check-circle"></i>
           </p>
         </div>
       {{/if}}
@@ -209,7 +199,7 @@
     {{! Custom JS - Automatically Close the Dialog Box }}
     <script type="text/javascript">
       window.addEventListener("load", function () { setTimeout(function () {
-      document.getElementById("dialogBox").style.visibility = "hidden"}, 4000)
+      document.getElementById("dialogBox").style.visibility = "hidden"}, 2500)
       })
     </script>
   </body>
