@@ -4,30 +4,32 @@ import { Link } from "react-router-dom";
 
 function SignInPlayer() {
   return (
-    <div className="containerSignInSignUp container-fluid bg-light text-start rounded">
+    <div
+      id="containerSignIn"
+      className="containerSignInSignUp container-fluid bg-light text-start rounded">
       <h3 className="formHeaders text-center">Sign in to your Account</h3>
 
-      <form action="">
+      <form action="http://localhost:4000/player/signin" method="POST">
         <fieldset>
           <div>
-            <label htmlFor="EMAIL">Email:</label>
+            <label htmlFor="player_code_name">Code Name:</label>
 
             <input
-              id="EMAIL"
-              name="EMAIL"
-              type="email"
-              className="form-control shadow-none mb-3"
+              id="player_code_name"
+              name="player_code_name"
+              type="text"
+              className="form-control shadow-none mb-2"
             />
           </div>
 
           <div>
-            <label htmlFor="PASSWORD">Password:</label>
+            <label htmlFor="player_password">Password:</label>
 
             <input
-              id="PASSWORD"
-              name="PASSWORD"
+              id="player_password"
+              name="player_password"
               type="password"
-              className="form-control shadow-none mb-3"
+              className="form-control shadow-none mb-2"
             />
           </div>
 

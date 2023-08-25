@@ -37,14 +37,10 @@ app.use(express.static(__dirname + "/extras"));
 // Confiigure the Express Server to Listen to the specified Port
 app
   .listen(port, () => {
-    console.log(
-      `\nServer successfully started at http://localhost:${port}\n`
-    );
+    console.log(`\nServer successfully started at http://localhost:${port}\n`);
   })
   .on("error", (error) => {
-    console.log(
-      `\nServer failed to start at Port ${port}\n${error.message}\n`
-    );
+    console.log(`\nServer failed to start at Port ${port}\n${error.message}\n`);
   });
 
 // -----------------------------------------------------------------//
@@ -54,7 +50,7 @@ const playerController = require("./controllers/playerController.js");
 
 // Player Routes - Sign Up / Sign In
 app.use("/player/signup", playerController.signup);
-// app.use("/player/signin", playerController.signin);
+app.use("/player/signin", playerController.signin);
 // // Player Routes - Edit / Update
 // app.use("/player/edit/:codename", playerController.edit);
 // app.use("/player/update", playerController.update);

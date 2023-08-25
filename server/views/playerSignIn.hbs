@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Flippy - Sign Up</title>
+    <title>Flippy - Sign In</title>
 
     {{! Bootstrap CSS }}
     <link
@@ -69,51 +69,18 @@
       {{/if}}
     </div>
 
-    {{! Player Sign Up Form }}
+    {{! Player Sign In Form }}
     <div
-      id="containerSignUp"
+      id="containerSignIn"
       class="containerSignInSignUp container-fluid bg-light text-start rounded"
     >
-      <h3 class="formHeaders text-center">Create an Account</h3>
+      <h3 class="formHeaders text-center">Sign in to your Account</h3>
 
-      <form action="/player/signup" method="POST">
+      <form action="/player/signin" method="POST">
         <fieldset>
-          <div class="d-flex justify-content-between mb-2">
-            <div class="w-100 me-2">
-              <label for="player_first_name">
-                First Name:
-                <span class="text-danger fs-3 m-0 p-0">*</span>
-              </label>
-
-              <input
-                id="player_first_name"
-                name="player_first_name"
-                type="text"
-                class="form-control shadow-none"
-                required
-              />
-            </div>
-
-            <div class="w-100 ms-2">
-              <label for="player_last_name">
-                Last Name:
-                <span class="text-danger fs-3 m-0 p-0">*</span>
-              </label>
-
-              <input
-                id="player_last_name"
-                name="player_last_name"
-                type="text"
-                class="form-control shadow-none"
-                required
-              />
-            </div>
-          </div>
-
           <div>
             <label for="player_code_name">
               Code Name:
-              <span class="text-danger fs-3 m-0 p-0">*</span>
             </label>
 
             <input
@@ -126,57 +93,24 @@
           </div>
 
           <div>
-            <label for="player_email">
-              Email:
-              <span class="text-danger fs-3 m-0 p-0">*</span>
+            <label for="player_password">
+              Password:
             </label>
 
             <input
-              id="player_email"
-              name="player_email"
-              type="email"
+              id="player_password"
+              name="player_password"
+              type="password"
               class="form-control shadow-none mb-2"
               required
             />
           </div>
 
-          <div class="d-flex justify-content-between mb-3">
-            <div class="w-100 me-2">
-              <label for="player_password">
-                Password:
-                <span class="text-danger fs-3 m-0 p-0">*</span>
-              </label>
-
-              <input
-                id="player_password"
-                name="player_password"
-                type="password"
-                class="form-control shadow-none"
-                required
-              />
-            </div>
-
-            <div class="w-100 ms-2">
-              <label for="player_confirm_password">
-                Confirm Password:
-                <span class="text-danger fs-3 m-0 p-0">*</span>
-              </label>
-
-              <input
-                id="player_confirm_password"
-                name="player_confirm_password"
-                type="password"
-                class="form-control shadow-none"
-                required
-              />
-            </div>
-          </div>
-
           <div>
             <button
-              id="btnSignUpPlayer"
+              id="btnSignInPlayer"
               type="submit"
-              class="btnSignUp btn btn-warning w-100 mb-3"
+              class="btnSignIn btn btn-warning w-100 mb-3"
             >
               Sign Up
             </button>
@@ -184,10 +118,10 @@
         </fieldset>
       </form>
 
-      <div class="divLinkToSignIn container-fluid py-2 w-75 rounded">
-        <p class="orSignIn text-center my-0 mx-3">
+      <div class="divLinkToSignUp container-fluid py-2 w-75 rounded">
+        <p class="orSignUp text-center my-0 mx-3">
           or
-          <a href="http://localhost:3000/SignInPlayer">Sign in to your Account</a>
+          <a href="http://localhost:3000/SignUpPlayer">Create an Account</a>
         </p>
       </div>
     </div>

@@ -30,7 +30,13 @@ exports.signup = (req, res) => {
       player_password === ""
     ) {
       return res.render("playerSignUp.hbs", {
-        message: "All fields are required",
+        messageError: "All fields are required",
+        category:
+          "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
+      });
+    } else if (player_confirm_password !== player_password) {
+      return res.render("playerSignUp.hbs", {
+        messageError: "Passwords did not match",
         category:
           "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
       });
@@ -48,7 +54,7 @@ exports.signup = (req, res) => {
 
         if (results.length > 0) {
           return res.render("playerSignUp.hbs", {
-            message: "Email already existing",
+            messageError: "Email already existing",
             category:
               "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
           });
@@ -66,17 +72,33 @@ exports.signup = (req, res) => {
 
             if (results.length > 0) {
               return res.render("playerSignUp.hbs", {
-                message: "Code Name already taken",
-                category:
-                  "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
-              });
-            } else if (player_confirm_password !== player_password) {
-              return res.render("playerSignUp.hbs", {
-                message: "Passwords did not match",
+                messageError: "Code Name already taken",
                 category:
                   "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
               });
             }
+
+            // Separate every word on the first name and capitalize each beginning letter
+            let first_name = player_first_name.trim().split(" ");
+            for (let ctr = 0; ctr < first_name.length; ctr++) {
+              first_name[ctr] =
+                first_name[ctr].charAt(0).toUpperCase() +
+                first_name[ctr].slice(1).toLowerCase();
+            }
+
+            // Join the first name back into 1 string
+            first_name.join(" ").toString();
+
+            // Separate every word on the last name and capitalize each beginning letter
+            let last_name = player_last_name.trim().split(" ");
+            for (let ctr = 0; ctr < last_name.length; ctr++) {
+              last_name[ctr] =
+                last_name[ctr].charAt(0).toUpperCase() +
+                last_name[ctr].slice(1).toLowerCase();
+            }
+
+            // Join the last name back into 1 string
+            last_name.join(" ").toString();
 
             let encryptedPassword = await bcrypt.hash(player_password, 8);
             // console.log(encryptedPassword);
@@ -84,10 +106,10 @@ exports.signup = (req, res) => {
             db.query(
               "INSERT INTO players SET ?",
               {
-                player_first_name,
-                player_last_name,
-                player_code_name,
-                player_email,
+                player_first_name: first_name,
+                player_last_name: last_name,
+                player_code_name: player_code_name,
+                player_email: player_email,
                 player_password: encryptedPassword,
               },
               (error, results) => {
@@ -97,7 +119,7 @@ exports.signup = (req, res) => {
                   // console.log(results);
 
                   return res.render("playerSignUp.hbs", {
-                    message: "Account created successfully",
+                    messageSuccess: "Account created successfully",
                     category:
                       "divSuccessMessage container-fluid d-flex justify-content-between align-items-center alert alert-success my-4 me-4",
                   });
@@ -112,3 +134,6 @@ exports.signup = (req, res) => {
     console.log(`\n${error.message}\n`);
   }
 };
+
+// Player Sign In
+exports.signin = (req, res) => {};

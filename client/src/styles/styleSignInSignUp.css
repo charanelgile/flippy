@@ -1,3 +1,7 @@
+#containerSignIn {
+  width: 35%;
+}
+
 .containerSignInSignUp {
   background: url("../flippy-background-mono.jpg");
   background-position: center;
@@ -42,6 +46,11 @@
 
 .containerSignInSignUp .form-control:focus {
   border: 3px solid rgb(255, 200, 20);
+}
+
+#player_email,
+#player_code_name {
+  text-transform: lowercase;
 }
 
 .btnSignIn,

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 
 function SignUpPlayer() {
   return (
-    <div className="containerSignInSignUp container-fluid bg-light text-start rounded">
+    <div
+      id="containerSignUp"
+      className="containerSignInSignUp container-fluid bg-light text-start rounded">
       <h3 className="formHeaders text-center">Create an Account</h3>
 
       <form action="http://localhost:4000/player/signup" method="POST">
@@ -111,8 +113,7 @@ function SignUpPlayer() {
 
       <div className="divLinkToSignIn container-fluid py-2 w-75 rounded">
         <p className="orSignIn text-center my-0 mx-3">
-          or&nbsp;&nbsp;
-          <Link to={"/SignInPlayer"}>Sign in to your Account</Link>
+          or <Link to={"/SignInPlayer"}>Sign in to your Account</Link>
         </p>
       </div>
     </div>
