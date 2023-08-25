@@ -19,6 +19,7 @@ function SignInPlayer() {
               name="player_code_name"
               type="text"
               className="form-control shadow-none mb-2"
+              required
             />
           </div>
 
@@ -30,6 +31,7 @@ function SignInPlayer() {
               name="player_password"
               type="password"
               className="form-control shadow-none mb-2"
+              required
             />
           </div>
 

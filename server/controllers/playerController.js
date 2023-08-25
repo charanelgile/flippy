@@ -136,4 +136,76 @@ exports.signup = (req, res) => {
 };
 
 // Player Sign In
-exports.signin = (req, res) => {};
+exports.signin = (req, res) => {
+  try {
+    const { player_code_name, player_password } = req.body;
+
+    if (player_code_name === "" || player_password === "") {
+      return res.render("playerSignIn.hbs", {
+        messageError: "All fields are required",
+        category:
+          "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
+      });
+    } else {
+      db.query(
+        "SELECT * FROM players WHERE player_code_name = ?",
+        player_code_name,
+        async (error, results) => {
+          // console.log(results);
+
+          if (!results.length > 0) {
+            res.render("playerSignIn.hbs", {
+              messageError: "Code Name does not exist",
+              category:
+                "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
+            });
+          } else if (
+            !(await bcrypt.compare(player_password, results[0].player_password))
+          ) {
+            res.render("playerSignIn.hbs", {
+              messageError: "Incorrect Password",
+              category:
+                "divErrorMessage container-fluid d-flex justify-content-between align-items-center alert alert-danger my-4 me-4",
+            });
+          } else {
+            const player_id = results[0].player_id;
+
+            const token = jwt.sign({ player_id }, process.env.JWTSECRET, {
+              expiresIn: process.env.JWTEXPIRE,
+            });
+
+            const cookieOptions = {
+              expires: new Date(
+                Date.now() + process.env.COOKIEEXPIRE * 24 * 60 * 60 * 1000
+              ),
+              httpOnly: true,
+            };
+
+            // console.log(player_id);
+            // console.log(token);
+            // console.log(cookieOptions);
+
+            res.cookie("JWT", token, cookieOptions);
+
+            db.query(
+              "SELECT * FROM players WHERE player_code_name = ?",
+              player_code_name,
+              (error, results) => {
+                console.log(results);
+
+                res.render("playerProfile.hbs", {
+                  playerProfile: results,
+                  messageSuccess: "Sign in successful",
+                  category:
+                    "divSuccessMessage container-fluid d-flex justify-content-between align-items-center alert alert-success my-4 me-4",
+                });
+              }
+            );
+          }
+        }
+      );
+    }
+  } catch (error) {
+    console.log(`\n${error.message}\n`);
+  }
+};
