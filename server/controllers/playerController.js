@@ -22,6 +22,19 @@ exports.signup = (req, res) => {
       player_confirm_password,
     } = req.body;
 
+    if (
+      player_first_name === "" ||
+      player_last_name === "" ||
+      player_code_name === "" ||
+      player_email === "" ||
+      player_password === ""
+    ) {
+      res.render("playerSignUp.hbs", {
+        message: "All fields are required",
+        category: "alert alert-danger text-center m-0",
+      });
+    }
+
     db.query(
       "SELECT * FROM players WHERE player_email = ?",
       player_email,
@@ -54,7 +67,7 @@ exports.signup = (req, res) => {
                 message: "Code Name already taken",
                 category: "alert alert-danger text-center m-0",
               });
-            } else if (player_password !== player_confirm_password) {
+            } else if (player_confirm_password !== player_password) {
               res.render("playerSignUp.hbs", {
                 message: "Passwords did not match",
                 category: "alert alert-danger text-center m-0",

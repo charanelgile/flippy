@@ -37,10 +37,14 @@ app.use(express.static(__dirname + "/extras"));
 // Confiigure the Express Server to Listen to the specified Port
 app
   .listen(port, () => {
-    console.log(`\nServer successfully started at http://localhost:${port}\n`);
+    console.log(
+      `\nServer successfully started at http://localhost:${port}\n`
+    );
   })
   .on("error", (error) => {
-    console.log(`\nServer failed to start at Port ${port}\n${error.message}\n`);
+    console.log(
+      `\nServer failed to start at Port ${port}\n${error.message}\n`
+    );
   });
 
 // -----------------------------------------------------------------//

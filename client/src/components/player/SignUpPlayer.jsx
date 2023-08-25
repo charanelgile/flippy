@@ -7,7 +7,9 @@ function SignUpPlayer() {
     <div className="containerSignInSignUp container-fluid bg-light text-start rounded">
       <h3 className="formHeaders text-center">Create an Account</h3>
 
-      <form action="http://localhost:4000/player/signup" method="POST">
+      <form
+        action="http://localhost:4000/player/signup"
+        method="POST">
         <fieldset>
           <div className="d-flex justify-content-between mb-2">
             <div className="w-100 me-2">
@@ -68,7 +70,9 @@ function SignUpPlayer() {
             </div>
 
             <div className="w-100 ms-2">
-              <label htmlFor="player_confirm_password">Confirm Password:</label>
+              <label htmlFor="player_confirm_password">
+                Confirm Password:
+              </label>
 
               <input
                 id="player_confirm_password"
