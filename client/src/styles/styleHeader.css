@@ -48,7 +48,25 @@
 }
 
 /***** Media Queries *****/
-@media screen and (max-width: 445px) {
+@media screen and (max-width: 430px) {
+  .nav {
+    height: 45px;
+    padding: 0 0.5%;
+  }
+
+  .logo {
+    font-size: 2rem;
+    letter-spacing: 0.05rem;
+    padding: 0 0.75rem !important;
+    -webkit-text-stroke-width: 0.5px;
+  }
+
+  .nav ul li a {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 430.01px) and (max-width: 445px) {
   .nav {
     height: 50px;
     padding: 0 1%;

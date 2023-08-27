@@ -1,5 +1,5 @@
 #containerCardGrid {
-  padding: 0 12%;
+  padding: 0 5%;
 }
 
 .divCardGrid {
@@ -9,7 +9,7 @@
 }
 
 #grid3x4 {
-  width: 85%;
+  width: 55%;
 }
 
 .grid3x4 {
@@ -18,7 +18,7 @@
 }
 
 #grid4x4 {
-  width: 70%;
+  width: 43%;
 }
 
 .grid4x4 {
@@ -27,7 +27,7 @@
 }
 
 #grid4x5 {
-  width: 85%;
+  width: 53%;
 }
 
 .grid4x5 {
@@ -36,7 +36,7 @@
 }
 
 #grid4x6 {
-  width: 95%;
+  width: 65%;
 }
 
 .grid4x6 {
@@ -45,7 +45,7 @@
 }
 
 #grid5x6 {
-  width: 75%;
+  width: 50%;
 }
 
 .grid5x6 {
@@ -54,7 +54,7 @@
 }
 
 #grid6x6 {
-  width: 70%;
+  width: 43%;
 }
 
 .grid6x6 {
@@ -63,7 +63,7 @@
 }
 
 #grid6x7 {
-  width: 75%;
+  width: 50%;
 }
 
 .grid6x7 {
@@ -72,7 +72,7 @@
 }
 
 #grid6x8 {
-  width: 85%;
+  width: 55%;
 }
 
 .grid6x8 {
@@ -80,7 +80,7 @@
   grid-template-rows: repeat(6, 1fr);
 }
 
-.card {
+#containerCardGrid .card {
   width: auto;
   border-radius: 5px;
   border: 7px solid rgb(220, 220, 220);
@@ -103,7 +103,7 @@
   }
 }
 
-.card img {
+#containerCardGrid .card img {
   max-width: 100%;
   max-height: 100%;
   transform: scale(0);
@@ -121,25 +121,25 @@
   }
 }
 
-.card.active img {
+#containerCardGrid .card.active img {
   transform: scale(1);
 }
 
-.card.active {
+#containerCardGrid .card.active {
   transform: rotateY(0);
 }
 
-.card.shown {
+#containerCardGrid .card.shown {
   border: 7px solid white;
 }
 
-.card.correct {
+#containerCardGrid .card.correct {
   border: 7px solid rgb(255, 200, 20);
   /* Prevent the cards from being flipped again, once tagged as "correct" */
   pointer-events: none;
 }
 
-.card.wrong {
+#containerCardGrid .card.wrong {
   border: 7px solid rgb(255, 25, 85);
 }
 
@@ -218,15 +218,6 @@
   border: 3px solid rgb(205, 130, 10) !important;
 }
 
-.swal2-cancel {
-  background: linear-gradient(
-    to bottom,
-    rgb(145, 80, 126),
-    rgb(110, 55, 75)
-  ) !important;
-  border: 3px solid rgb(110, 55, 75) !important;
-}
-
 .swal2-deny {
   background: linear-gradient(
     to bottom,
@@ -236,6 +227,537 @@
   border: 3px solid rgb(41, 127, 41) !important;
 }
 
+.swal2-cancel {
+  background: linear-gradient(
+    to bottom,
+    rgb(145, 80, 126),
+    rgb(110, 55, 75)
+  ) !important;
+  border: 3px solid rgb(110, 55, 75) !important;
+}
+
 .swal2-close {
   color: rgb(110, 55, 75) !important;
+}
+
+/***** Media Queries *****/
+/* Sweet Alert */
+@media screen and (max-width: 450px) {
+  .swal2-popup {
+    width: 80% !important;
+  }
+
+  #swal2-title {
+    font-size: 28px;
+  }
+
+  #swal2-html-container {
+    font-size: 22px;
+  }
+
+  .swal2-actions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .swal2-confirm,
+  .swal2-cancel,
+  .swal2-deny {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (min-width: 450.01px) and (max-width: 500px) {
+  .swal2-popup {
+    width: 80% !important;
+  }
+
+  #swal2-title {
+    font-size: 30px;
+  }
+
+  #swal2-html-container {
+    font-size: 24px;
+  }
+
+  .swal2-actions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .swal2-confirm,
+  .swal2-cancel,
+  .swal2-deny {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (min-width: 500.01px) and (max-width: 650px) {
+  .swal2-popup {
+    width: 80% !important;
+  }
+
+  #swal2-title {
+    font-size: 34px;
+  }
+
+  #swal2-html-container {
+    font-size: 26px;
+  }
+
+  .swal2-actions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .swal2-confirm,
+  .swal2-cancel,
+  .swal2-deny {
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 17px !important;
+  }
+}
+
+@media screen and (min-width: 650.01px) and (max-width: 900px) {
+  .swal2-popup {
+    width: 85% !important;
+  }
+}
+
+/* Cards */
+@media screen and (max-width: 500px) {
+  #containerCardGrid {
+    padding: 0 5%;
+  }
+
+  .divCardGrid {
+    gap: 0.35em;
+  }
+
+  #grid3x4,
+  #grid4x4,
+  #grid4x5,
+  #grid4x6,
+  #grid5x6,
+  #grid6x6,
+  #grid6x7,
+  #grid6x8 {
+    width: 100%;
+  }
+
+  #grid4x6 .card,
+  #grid5x6 .card,
+  #grid6x6 .card {
+    border: 5px solid rgb(220, 220, 220);
+  }
+
+  #grid4x6 .card.shown,
+  #grid5x6 .card.shown,
+  #grid6x6 .card.shown {
+    border: 5px solid white;
+  }
+
+  #grid4x6 .card.correct,
+  #grid5x6 .card.correct,
+  #grid6x6 .card.correct {
+    border: 5px solid rgb(255, 200, 20);
+  }
+
+  #grid4x6 .card.wrong,
+  #grid5x6 .card.wrong,
+  #grid6x6 .card.wrong {
+    border: 5px solid rgb(255, 25, 85);
+  }
+
+  #grid6x7 .card,
+  #grid6x8 .card {
+    border: 4px solid rgb(220, 220, 220);
+  }
+
+  #grid6x7 .card.shown,
+  #grid6x8 .card.shown {
+    border: 4px solid white;
+  }
+
+  #grid6x7 .card.correct,
+  #grid6x8 .card.correct {
+    border: 4px solid rgb(255, 200, 20);
+  }
+
+  #grid6x7 .card.wrong,
+  #grid6x8 .card.wrong {
+    border: 4px solid rgb(255, 25, 85);
+  }
+
+  .divTrackers {
+    padding: 7px;
+  }
+
+  .divTrackers p {
+    font-size: 15px;
+    border: 2px solid rgb(110, 55, 75) !important;
+  }
+
+  .trackers {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 500.01px) and (max-width: 620px) {
+  #containerCardGrid {
+    padding: 0 6%;
+  }
+
+  .divCardGrid {
+    gap: 0.35em;
+  }
+
+  #grid3x4,
+  #grid4x5,
+  #grid4x6,
+  #grid5x6,
+  #grid6x7,
+  #grid6x8 {
+    width: 100%;
+  }
+
+  #grid4x4 {
+    width: 95%;
+  }
+
+  #grid6x6 {
+    width: 90%;
+  }
+
+  #grid4x6 .card,
+  #grid5x6 .card,
+  #grid6x6 .card {
+    border: 5px solid rgb(220, 220, 220);
+  }
+
+  #grid4x6 .card.shown,
+  #grid5x6 .card.shown,
+  #grid6x6 .card.shown {
+    border: 5px solid white;
+  }
+
+  #grid4x6 .card.correct,
+  #grid5x6 .card.correct,
+  #grid6x6 .card.correct {
+    border: 5px solid rgb(255, 200, 20);
+  }
+
+  #grid4x6 .card.wrong,
+  #grid5x6 .card.wrong,
+  #grid6x6 .card.wrong {
+    border: 5px solid rgb(255, 25, 85);
+  }
+
+  #grid6x7 .card,
+  #grid6x8 .card {
+    border: 4px solid rgb(220, 220, 220);
+  }
+
+  #grid6x7 .card.shown,
+  #grid6x8 .card.shown {
+    border: 4px solid white;
+  }
+
+  #grid6x7 .card.correct,
+  #grid6x8 .card.correct {
+    border: 4px solid rgb(255, 200, 20);
+  }
+
+  #grid6x7 .card.wrong,
+  #grid6x8 .card.wrong {
+    border: 4px solid rgb(255, 25, 85);
+  }
+}
+
+@media screen and (min-width: 620.01px) and (max-width: 750px) {
+  #containerCardGrid {
+    padding: 0 7%;
+  }
+
+  .divCardGrid {
+    gap: 0.4em;
+  }
+
+  #grid3x4,
+  #grid4x5,
+  #grid4x6,
+  #grid6x8 {
+    width: 100%;
+  }
+
+  #grid4x4,
+  #grid6x6 {
+    width: 80%;
+  }
+
+  #grid5x6 {
+    width: 95%;
+  }
+
+  #grid6x7 {
+    width: 93%;
+  }
+
+  #grid4x6 .card,
+  #grid5x6 .card,
+  #grid6x6 .card {
+    border: 5px solid rgb(220, 220, 220);
+  }
+
+  #grid4x6 .card.shown,
+  #grid5x6 .card.shown,
+  #grid6x6 .card.shown {
+    border: 5px solid white;
+  }
+
+  #grid4x6 .card.correct,
+  #grid5x6 .card.correct,
+  #grid6x6 .card.correct {
+    border: 5px solid rgb(255, 200, 20);
+  }
+
+  #grid4x6 .card.wrong,
+  #grid5x6 .card.wrong,
+  #grid6x6 .card.wrong {
+    border: 5px solid rgb(255, 25, 85);
+  }
+
+  #grid6x7 .card,
+  #grid6x8 .card {
+    border: 4px solid rgb(220, 220, 220);
+  }
+
+  #grid6x7 .card.shown,
+  #grid6x8 .card.shown {
+    border: 4px solid white;
+  }
+
+  #grid6x7 .card.correct,
+  #grid6x8 .card.correct {
+    border: 4px solid rgb(255, 200, 20);
+  }
+
+  #grid6x7 .card.wrong,
+  #grid6x8 .card.wrong {
+    border: 4px solid rgb(255, 25, 85);
+  }
+}
+
+@media screen and (min-width: 750.01px) and (max-width: 900px) {
+  #containerCardGrid {
+    padding: 0 8%;
+  }
+
+  .divCardGrid {
+    gap: 0.4em;
+  }
+
+  #grid3x4,
+  #grid4x5 {
+    width: 85%;
+  }
+
+  #grid4x4,
+  #grid6x6 {
+    width: 67%;
+  }
+
+  #grid4x6,
+  #grid6x8 {
+    width: 90%;
+  }
+
+  #grid5x6,
+  #grid6x7 {
+    width: 80%;
+  }
+
+  #grid4x6 .card,
+  #grid5x6 .card,
+  #grid6x6 .card {
+    border: 6px solid rgb(220, 220, 220);
+  }
+
+  #grid4x6 .card.shown,
+  #grid5x6 .card.shown,
+  #grid6x6 .card.shown {
+    border: 6px solid white;
+  }
+
+  #grid4x6 .card.correct,
+  #grid5x6 .card.correct,
+  #grid6x6 .card.correct {
+    border: 6px solid rgb(255, 200, 20);
+  }
+
+  #grid4x6 .card.wrong,
+  #grid5x6 .card.wrong,
+  #grid6x6 .card.wrong {
+    border: 6px solid rgb(255, 25, 85);
+  }
+
+  #grid6x7 .card,
+  #grid6x8 .card {
+    border: 5px solid rgb(220, 220, 220);
+  }
+
+  #grid6x7 .card.shown,
+  #grid6x8 .card.shown {
+    border: 5px solid white;
+  }
+
+  #grid6x7 .card.correct,
+  #grid6x8 .card.correct {
+    border: 5px solid rgb(255, 200, 20);
+  }
+
+  #grid6x7 .card.wrong,
+  #grid6x8 .card.wrong {
+    border: 5px solid rgb(255, 25, 85);
+  }
+}
+
+@media screen and (min-width: 900.01px) and (max-width: 1000px) {
+  #containerCardGrid {
+    padding: 0 3%;
+  }
+
+  #containerCardGrid > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+  }
+
+  #containerTrackers {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    justify-content: flex-end !important;
+    margin-left: 1.5rem;
+  }
+
+  #grid3x4,
+  #grid4x4,
+  #grid4x5,
+  #grid4x6,
+  #grid5x6,
+  #grid6x6,
+  #grid6x7,
+  #grid6x8 {
+    margin: 0;
+    display: grid !important;
+  }
+
+  #grid3x4,
+  #grid4x5,
+  #grid4x6,
+  #grid5x6,
+  #grid6x7,
+  #grid6x8 {
+    width: 75%;
+  }
+
+  #grid4x4,
+  #grid6x6 {
+    width: 63%;
+  }
+}
+
+@media screen and (min-width: 1000.01px) and (max-width: 1200px) {
+  #containerCardGrid {
+    padding: 0 3%;
+  }
+
+  #containerCardGrid > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+  }
+
+  #containerTrackers {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    justify-content: flex-end !important;
+    margin-left: 2rem;
+  }
+
+  #grid3x4,
+  #grid4x4,
+  #grid4x5,
+  #grid4x6,
+  #grid5x6,
+  #grid6x6,
+  #grid6x7,
+  #grid6x8 {
+    margin: 0;
+    display: grid !important;
+  }
+
+  #grid3x4,
+  #grid6x8 {
+    width: 70%;
+  }
+
+  #grid4x4,
+  #grid6x6 {
+    width: 53%;
+  }
+
+  #grid4x5 {
+    width: 65%;
+  }
+
+  #grid4x6 {
+    width: 78%;
+  }
+
+  #grid5x6 {
+    width: 63%;
+  }
+
+  #grid6x7 {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1200.01px) {
+  #containerCardGrid > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+  }
+
+  #containerTrackers {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    justify-content: flex-end !important;
+    margin-left: 2rem;
+  }
+
+  #grid3x4,
+  #grid4x4,
+  #grid4x5,
+  #grid4x6,
+  #grid5x6,
+  #grid6x6,
+  #grid6x7,
+  #grid6x8 {
+    margin: 0;
+    display: grid !important;
+  }
 }

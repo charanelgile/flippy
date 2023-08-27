@@ -126,7 +126,7 @@ const CardsGrid = ({ minutes, seconds, deck, setDeck, dimensions }) => {
 
   return (
     <div>
-      <div className="d-flex justify-content-evenly mx-auto">
+      <div id="containerTrackers" className="d-flex justify-content-evenly">
         {/* <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
             <FontAwesomeIcon icon={faTrophy} />
@@ -137,17 +137,17 @@ const CardsGrid = ({ minutes, seconds, deck, setDeck, dimensions }) => {
 
         <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
-            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faRightLeft} />
             &nbsp;&nbsp;
-            <span className="trackers">{totalScore}</span>
+            <span className="trackers">{currentScore}</span>
           </p>
         </div>
 
         <div className="divTrackers bg-warning mb-3">
           <p className="m-0 px-3 border border-3 rounded">
-            <FontAwesomeIcon icon={faRightLeft} />
+            <FontAwesomeIcon icon={faStar} />
             &nbsp;&nbsp;
-            <span className="trackers">{currentScore}</span>
+            <span className="trackers">{totalScore}</span>
           </p>
         </div>
 
