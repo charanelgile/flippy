@@ -328,11 +328,11 @@
 
 @media screen and (min-width: 650.01px) and (max-width: 900px) {
   .swal2-popup {
-    width: 85% !important;
+    width: 80% !important;
   }
 }
 
-/* Cards */
+/* Cards & Trackers */
 @media screen and (max-width: 500px) {
   #containerCardGrid {
     padding: 0 5%;
@@ -480,6 +480,19 @@
   #grid6x8 .card.wrong {
     border: 4px solid rgb(255, 25, 85);
   }
+
+  .divTrackers {
+    padding: 7px;
+  }
+
+  .divTrackers p {
+    font-size: 16px;
+    border: 2px solid rgb(110, 55, 75) !important;
+  }
+
+  .trackers {
+    font-size: 22px;
+  }
 }
 
 @media screen and (min-width: 620.01px) and (max-width: 750px) {
@@ -554,6 +567,18 @@
   #grid6x8 .card.wrong {
     border: 4px solid rgb(255, 25, 85);
   }
+
+  .divTrackers {
+    padding: 8px;
+  }
+
+  .divTrackers p {
+    font-size: 18px;
+  }
+
+  .trackers {
+    font-size: 24px;
+  }
 }
 
 @media screen and (min-width: 750.01px) and (max-width: 900px) {
@@ -627,6 +652,14 @@
   #grid6x7 .card.wrong,
   #grid6x8 .card.wrong {
     border: 5px solid rgb(255, 25, 85);
+  }
+
+  .divTrackers {
+    padding: 8px;
+  }
+
+  .trackers {
+    font-size: 26px;
   }
 }
 
