@@ -1,5 +1,5 @@
 // Library Imports
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 
 // Context Import
 import { CurrentSessionContext } from "../../contexts/CurrentSessionContext";
@@ -8,9 +8,14 @@ import { CurrentSessionContext } from "../../contexts/CurrentSessionContext";
 import useDeck from "../../hooks/useDeck";
 
 // Page & Component Import
+import Mechanics from "./Mechanics";
 import CardsGrid from "./CardsGrid";
 
 const StartGame = () => {
+  const [isMechanicsShown, setIsMechanicsShown] = useState(false);
+
+  console.log(`From Start Game: ${isMechanicsShown}`);
+
   const { currentSession } = useContext(CurrentSessionContext);
 
   const [minutes, seconds, deck, setDeck, startGame] = useDeck({
@@ -19,7 +24,12 @@ const StartGame = () => {
 
   return (
     <div>
-      {deck.length === 0 && currentSession[0].playerLevel < 9 ? (
+      {!isMechanicsShown ? (
+        <Mechanics
+          isMechanicsShown={isMechanicsShown}
+          setIsMechanicsShown={setIsMechanicsShown}
+        />
+      ) : deck.length === 0 && currentSession[0].playerLevel < 9 ? (
         <div
           id="containerStartGame"
           className="d-flex justify-content-center align-items-center">
