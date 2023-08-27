@@ -16,7 +16,9 @@ const Mechanics = () => {
       <h3 className="mb-4">Let's go over some details and mechanics</h3>
 
       <div className="fs-5">
-        <div className="d-flex justify-content-between align-items-start mb-4">
+        <div
+          id="divMechanics"
+          className="d-flex justify-content-between align-items-start">
           <div className="d-flex flex-column justify-content-start align-items-start text-start me-3">
             <div className="divTrackers bg-warning mb-2">
               <p className="m-0 px-3 border border-3 rounded">
@@ -65,7 +67,9 @@ const Mechanics = () => {
           </div>
         </div>
 
-        <div className="divMechanics d-flex justify-content-start align-items-center text-start mb-3">
+        <div
+          id="divMechanicsTimer"
+          className="d-flex justify-content-start align-items-center text-start">
           <div className="divTrackers me-3 last10seconds">
             <p className="m-0 px-3 border border-3 rounded" id="last10seconds">
               <FontAwesomeIcon icon={faHourglassEnd} />
@@ -86,7 +90,7 @@ const Mechanics = () => {
       </div>
 
       <div className="w-100 text-center">
-        <Link to={"/Play"} className="btn fs-4 mb-3 py-1 px-3">
+        <Link to={"/Play"} className="btn fs-4 mb-2 py-1 px-3">
           Got it
         </Link>
       </div>
