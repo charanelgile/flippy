@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Page & Component Imports
 import Header from "./components/Header";
-import Ranking from "./pages/Ranking";
 import SignInPlayer from "./components/player/SignInPlayer";
 import SignUpPlayer from "./components/player/SignUpPlayer";
 import SignInAdmin from "./components/admin/SignInAdmin";
@@ -32,8 +31,6 @@ function App() {
             <Route path="/" element={<Mechanics />} />
 
             <Route path="/Play" element={<StartGame />} />
-
-            <Route path="/Ranking" element={<Ranking />} />
 
             <Route path="/SignInPlayer" element={<SignInPlayer />} />
 

@@ -96,3 +96,54 @@ body {
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
+
+/***** Media Queries *****/
+@media screen and (max-width: 445px) {
+  .nav {
+    height: 50px;
+    padding: 0 1%;
+  }
+
+  .logo {
+    font-size: 2.2rem;
+    letter-spacing: 0.07rem;
+    padding: 0 1rem !important;
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .nav ul li a {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 445.01px) and (max-width: 500px) {
+  .nav {
+    height: 55px;
+    padding: 0 2%;
+  }
+
+  .logo {
+    font-size: 2.3rem;
+    letter-spacing: 1px;
+    padding: 0 1rem !important;
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .nav ul li a {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 500.01px) and (max-width: 650px) {
+  .nav {
+    height: 60px;
+    padding: 0 3%;
+  }
+
+  .logo {
+    font-size: 2.6rem;
+    letter-spacing: 1px;
+    padding: 0 1rem !important;
+    -webkit-text-stroke-width: 1.5px;
+  }
+}
