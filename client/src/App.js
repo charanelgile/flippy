@@ -9,11 +9,13 @@ import SignInPlayer from "./components/player/SignInPlayer";
 import SignUpPlayer from "./components/player/SignUpPlayer";
 import SignInAdmin from "./components/admin/SignInAdmin";
 import SignUpAdmin from "./components/admin/SignUpAdmin";
+import Mechanics from "./components/player/Mechanics";
 import StartGame from "./components/player/StartGame";
 
 // Style Imports
 import "./styles/style.css";
 import "./styles/styleHeader.css";
+import "./styles/styleMechanics.css";
 import "./styles/styleStartGame.css";
 import "./styles/styleCards.css";
 import "./styles/styleRank.css";
@@ -27,35 +29,19 @@ function App() {
           <Header />
 
           <Routes>
-            <Route
-              path="/"
-              element={<StartGame />}
-            />
+            <Route path="/" element={<Mechanics />} />
 
-            <Route
-              path="/Ranking"
-              element={<Ranking />}
-            />
+            <Route path="/Play" element={<StartGame />} />
 
-            <Route
-              path="/SignInPlayer"
-              element={<SignInPlayer />}
-            />
+            <Route path="/Ranking" element={<Ranking />} />
 
-            <Route
-              path="/SignUpPlayer"
-              element={<SignUpPlayer />}
-            />
+            <Route path="/SignInPlayer" element={<SignInPlayer />} />
 
-            <Route
-              path="/SignInAdmin"
-              element={<SignInAdmin />}
-            />
+            <Route path="/SignUpPlayer" element={<SignUpPlayer />} />
 
-            <Route
-              path="/SignUpAdmin"
-              element={<SignUpAdmin />}
-            />
+            <Route path="/SignInAdmin" element={<SignInAdmin />} />
+
+            <Route path="/SignUpAdmin" element={<SignUpAdmin />} />
           </Routes>
         </BrowserRouter>
       </div>

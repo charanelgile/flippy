@@ -17,7 +17,7 @@ function CustomLink({ to, children, ...props }) {
 const Header = () => {
   return (
     <nav className="nav">
-      <Link to="/" className="brand logo">
+      <Link to="/Play" className="brand logo">
         Flippy
       </Link>
 

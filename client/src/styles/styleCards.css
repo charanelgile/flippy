@@ -8,7 +8,7 @@
   gap: 0.5em;
 }
 
-#divCardGrid3x4 {
+#grid3x4 {
   width: 85%;
 }
 
@@ -17,7 +17,7 @@
   grid-template-rows: repeat(3, 1fr);
 }
 
-#divCardGrid4x4 {
+#grid4x4 {
   width: 70%;
 }
 
@@ -26,7 +26,7 @@
   grid-template-rows: repeat(4, 1fr);
 }
 
-#divCardGrid4x5 {
+#grid4x5 {
   width: 85%;
 }
 
@@ -35,7 +35,7 @@
   grid-template-rows: repeat(4, 1fr);
 }
 
-#divCardGrid4x6 {
+#grid4x6 {
   width: 95%;
 }
 
@@ -44,7 +44,7 @@
   grid-template-rows: repeat(4, 1fr);
 }
 
-#divCardGrid5x6 {
+#grid5x6 {
   width: 75%;
 }
 
@@ -53,7 +53,7 @@
   grid-template-rows: repeat(5, 1fr);
 }
 
-#divCardGrid6x6 {
+#grid6x6 {
   width: 70%;
 }
 
@@ -62,7 +62,7 @@
   grid-template-rows: repeat(6, 1fr);
 }
 
-#divCardGrid6x7 {
+#grid6x7 {
   width: 75%;
 }
 
@@ -71,7 +71,7 @@
   grid-template-rows: repeat(6, 1fr);
 }
 
-#divCardGrid6x8 {
+#grid6x8 {
   width: 85%;
 }
 

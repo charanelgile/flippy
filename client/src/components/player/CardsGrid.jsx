@@ -179,7 +179,7 @@ const CardsGrid = ({ minutes, seconds, deck, setDeck, dimensions }) => {
       </div>
 
       <div
-        id="divCardGrid3x4"
+        id={dimensions}
         className={
           countdown === "00:00"
             ? "divCardGrid " + dimensions + " gameOver"
