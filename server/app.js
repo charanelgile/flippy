@@ -52,6 +52,8 @@ const playerController = require("./controllers/playerController.js");
 app.use("/player/signup", playerController.signup);
 app.use("/player/signin", playerController.signin);
 app.use("/player/signout", playerController.signout);
+// Player Routes - Ranking
+app.use("/player/ranking/:player_code_name", playerController.ranking);
 // // Player Routes - Edit / Update
 // app.use("/player/edit/:codename", playerController.edit);
 // app.use("/player/update", playerController.update);

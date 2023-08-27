@@ -26,7 +26,9 @@ const Header = () => {
           Create an account
         </CustomLink>
 
-        <CustomLink to="/Ranking" className="brand navlink">
+        <CustomLink
+          to="http://localhost:4000/player/ranking"
+          className="brand navlink">
           Ranking
         </CustomLink>
       </ul>

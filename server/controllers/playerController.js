@@ -230,3 +230,25 @@ exports.signout = (req, res) => {
       "divSuccessMessage container-fluid d-flex justify-content-between align-items-center alert alert-success my-4 me-4",
   });
 };
+
+// Player Ranking
+exports.ranking = (req, res) => {
+  try {
+    const { player_code_name } = req.params.player_code_name;
+
+    if (player_code_name === "") {
+      db.query(
+        "SELECT player_code_name, player_high_score FROM players",
+        (error, results) => {
+          // console.log(results);
+
+          return res.render("playerRanking.hbs");
+        }
+      );
+    } else {
+      db.query("SELECT player_code_name, player_high_score FROM players");
+    }
+  } catch (error) {
+    console.log(`\n${error.message}\n`);
+  }
+};
