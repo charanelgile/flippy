@@ -1,0 +1,42 @@
+#cardSaveHighScore {
+  width: 40%;
+  background: url("../flippy-background-mono.jpg");
+}
+
+#frmSaveHighScore {
+  width: 100%;
+}
+
+.lblSaveHighScore {
+  text-transform: lowercase;
+  font-family: "GAMERIA";
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: rgb(70, 70, 70);
+  margin-top: 10px !important;
+}
+
+.fldSaveHighScore {
+  border: none;
+  font-size: 30px;
+  margin-bottom: 5px;
+  color: rgb(110, 55, 75);
+  background: transparent !important;
+  pointer-events: none;
+}
+
+#btnSaveHighScore {
+  width: 80% !important;
+  font-size: 20px;
+  margin-top: 10px;
+  color: rgb(250, 175, 25);
+  background-color: rgb(110, 55, 75);
+}
+
+#btnRestartGame {
+  width: 80% !important;
+  font-size: 20px;
+  margin-top: 10px;
+  color: rgb(110, 55, 75);
+  background-color: rgb(250, 175, 25);
+}

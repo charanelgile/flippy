@@ -8,6 +8,7 @@ import SignInPlayer from "./components/player/SignInPlayer";
 import SignUpPlayer from "./components/player/SignUpPlayer";
 import SignInAdmin from "./components/admin/SignInAdmin";
 import SignUpAdmin from "./components/admin/SignUpAdmin";
+import Board from "./components/rankTable/Board";
 import Mechanics from "./components/player/Mechanics";
 import StartGame from "./components/player/StartGame";
 
@@ -19,6 +20,7 @@ import "./styles/styleStartGame.css";
 import "./styles/styleCards.css";
 import "./styles/styleRank.css";
 import "./styles/styleSignInSignUp.css";
+import "./styles/styleSaveHighScore.css";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path="/" element={<Mechanics />} />
 
             <Route path="/Play" element={<StartGame />} />
+
+            <Route path="/Ranking" element={<Board />} />
 
             <Route path="/SignInPlayer" element={<SignInPlayer />} />
 

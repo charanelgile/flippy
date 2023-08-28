@@ -9,6 +9,7 @@ import useDeck from "../../hooks/useDeck";
 
 // Page & Component Import
 import CardsGrid from "./CardsGrid";
+import SaveHighScore from "./SaveHighScore";
 
 const StartGame = () => {
   const { currentSession } = useContext(CurrentSessionContext);
@@ -46,11 +47,7 @@ const StartGame = () => {
           />
         </div>
       ) : deck.length === 0 && currentSession[0].playerLevel > 8 ? (
-        <div
-          id="containerStartGame"
-          className="d-flex justify-content-center align-items-center text-warning">
-          <h1>Thank you for playing our game</h1>
-        </div>
+        <SaveHighScore currentSession={currentSession[0]} />
       ) : (
         ""
       )}

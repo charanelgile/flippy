@@ -31,7 +31,7 @@ const useDeck = ({ dimensions }) => {
 
         populatePairs(startingIndexCount, endingIndexCount);
 
-        console.log(pairs);
+        // console.log(pairs);
         break;
       // If dimensions = 4x5, the number of card pairs needed will be 10 making a grid of 20 cards
       // Randomly select a number between 1 to 47 and set as the starting count
@@ -46,7 +46,7 @@ const useDeck = ({ dimensions }) => {
 
         populatePairs(startingIndexCount, endingIndexCount);
 
-        console.log(pairs);
+        // console.log(pairs);
         break;
       // If dimensions = 4x6, the number of card pairs needed will be 12 making a grid of 24 cards
       // Randomly select a number between 1 to 45 and set as the starting count
@@ -61,7 +61,7 @@ const useDeck = ({ dimensions }) => {
 
         populatePairs(startingIndexCount, endingIndexCount);
 
-        console.log(pairs);
+        // console.log(pairs);
         break;
       // dimensions = 5x6
       case "grid5x6":
@@ -73,7 +73,7 @@ const useDeck = ({ dimensions }) => {
 
         populatePairs(startingIndexCount, endingIndexCount);
 
-        console.log(pairs);
+        // console.log(pairs);
         break;
       // dimensions = 6x6
       case "grid6x6":
@@ -85,7 +85,7 @@ const useDeck = ({ dimensions }) => {
 
         populatePairs(startingIndexCount, endingIndexCount);
 
-        console.log(pairs);
+        // console.log(pairs);
         break;
       // dimensions = 6x7
       case "grid6x7":
@@ -97,7 +97,7 @@ const useDeck = ({ dimensions }) => {
 
         populatePairs(startingIndexCount, endingIndexCount);
 
-        console.log(pairs);
+        // console.log(pairs);
         break;
       // dimensions = 6x8
       case "grid6x8":
@@ -109,7 +109,7 @@ const useDeck = ({ dimensions }) => {
 
         populatePairs(startingIndexCount, endingIndexCount);
 
-        console.log(pairs);
+        // console.log(pairs);
         break;
       // dimensions = 3x4 [default]
       default:
@@ -121,7 +121,7 @@ const useDeck = ({ dimensions }) => {
 
         populatePairs(startingIndexCount, endingIndexCount);
 
-        console.log(pairs);
+        // console.log(pairs);
         break;
     }
   };

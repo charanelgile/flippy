@@ -52,22 +52,35 @@ const useComputeScores = ({ min, sec }) => {
       setHighScore(totalScoreToStore);
     }
 
-    console.log(`Remaining Seconds: ${sec}`);
-    console.log(`Remaining Minutes: ${min}`);
-    console.log(`Total Time Remaining (in Seconds):\n${totalTimeRemaining}`);
+    const playerProgress = [
+      {
+        playerID: currentSession[0].playerID,
+        playerName: currentSession[0].playerName,
+        playerCodename: currentSession[0].playerCodename,
+        playerEmail: currentSession[0].playerEmail,
+        playerTotalScore: totalScoreToStore,
+        playerHighScore: highScoreToStore,
+        playerLevel: currentSession[0].playerLevel + 1,
+        playerGridDimensions: currentSession[0].playerGridDimensions,
+      },
+    ];
 
-    console.log(`Time Bonus: ${timeBonus} +`);
-    console.log(`Current Score: ${currentScoreToStore}\n===================`);
+    // console.log(`Remaining Seconds: ${sec}`);
+    // console.log(`Remaining Minutes: ${min}`);
+    // console.log(`Total Time Remaining (in Seconds):\n${totalTimeRemaining}`);
 
-    console.log(`Final Score: ${totalScoreToStore}`);
+    // console.log(`Time Bonus: ${timeBonus} +`);
+    // console.log(`Current Score: ${currentScoreToStore}\n===================`);
 
-    console.log(`Personal Best: ${highScoreToStore}`);
+    // console.log(`Final Score: ${totalScoreToStore}`);
+
+    // console.log(`Personal Best: ${highScoreToStore}`);
 
     Swal.fire({
       icon: "success",
       iconColor: "rgb(225, 155, 10)",
       title: `&#127881&#127881&#127881<br/>Congratulations`,
-      text: `You have completed Level ${currentSession[0].playerLevel}`,
+      text: `You completed Level ${currentSession[0].playerLevel} with a score of ${totalScoreToStore}.`,
       width: 650,
       confirmButtonText: `<i class="fa-solid fa-angles-right"></i>&nbsp;&nbsp;Next Level`,
       showDenyButton: true,
@@ -78,26 +91,16 @@ const useComputeScores = ({ min, sec }) => {
       if (result.isConfirmed) {
         currentSession[0].playerGridDimensions.shift();
 
-        const playerProgress = [
-          {
-            playerID: currentSession[0].playerID,
-            playerName: currentSession[0].playerName,
-            playerCodename: currentSession[0].playerCodename,
-            playerEmail: currentSession[0].playerEmail,
-            playerTotalScore: totalScoreToStore,
-            playerHighScore: highScoreToStore,
-            playerLevel: currentSession[0].playerLevel + 1,
-            playerGridDimensions: currentSession[0].playerGridDimensions,
-          },
-        ];
-
         setCurrentSession(playerProgress);
 
         window.location.reload();
       } else if (result.isDenied) {
         window.location.reload();
       } else {
-        // Swal.fire("This should go to the Ranking", "", "warning");
+        currentSession[0].playerGridDimensions.shift();
+
+        setCurrentSession(playerProgress);
+
         goToRanking("/Ranking");
         window.location.reload();
       }
