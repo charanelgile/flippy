@@ -44,7 +44,7 @@ function SignUpPlayer() {
           body: JSON.stringify(player),
         });
 
-        if (response) {
+        if (response.ok) {
           const data = await response.json();
 
           console.log(data);
@@ -81,6 +81,8 @@ function SignUpPlayer() {
           ]);
 
           playGame('/Play');
+        } else {
+          setError('Incorrect registration details. Please check.');
         }
       }
     } catch (error) {
