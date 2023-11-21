@@ -31,6 +31,8 @@ const errorHandler = (err, req, res) => {
     }`;
   }
 
+  // console.log(err);
+
   return res.status(customError.statusCode).json({
     error: {
       message: customError.errMessage,

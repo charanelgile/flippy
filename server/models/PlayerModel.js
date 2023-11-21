@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const PlayerSchema = new mongoose.Schema(
   {
@@ -31,8 +33,44 @@ const PlayerSchema = new mongoose.Schema(
       required: [true, 'Please provide a password'],
       minlength: 8,
     },
+    highscore: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
+
+// Encrypt Password
+PlayerSchema.pre('save', async function () {
+  const salt = await bcrypt.genSalt(10);
+
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+// Compare Password
+PlayerSchema.methods.comparePassword = async function (candidatePassword) {
+  const isPasswordMatched = await bcrypt.compare(
+    candidatePassword,
+    this.password
+  );
+
+  return isPasswordMatched;
+};
+
+// Generate Token
+PlayerSchema.methods.generateToken = function () {
+  return jwt.sign(
+    // Payload
+    {
+      playerID: this._id,
+      playerEmail: this.email,
+    },
+    // Signature
+    process.env.JWT_SECRET,
+    // Options
+    { expiresIn: process.env.JWT_EXPIRE }
+  );
+};
 
 module.exports = mongoose.model('Player', PlayerSchema);
