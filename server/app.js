@@ -3,9 +3,18 @@ require('dotenv').config();
 const express = require('express');
 const connectToDatabase = require('./database/connectToDatabase');
 
+// Routers
+const playerRouter = require('./routes/playerRoutes');
+
 const app = express();
 
 const port = process.env.PORT || 3001;
+
+// Middlewares
+app.use(express.json());
+
+// Endpoints
+app.use('/api/players', playerRouter);
 
 const startServer = async () => {
   try {
