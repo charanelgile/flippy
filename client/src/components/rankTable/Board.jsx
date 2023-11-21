@@ -1,26 +1,56 @@
-import React, { useState } from "react";
-import Profiles from "./Profiles";
-import { Leaderboard } from "./RankData";
+import React, { useState, useEffect } from 'react';
+import Profiles from './Profiles';
+import { Leaderboard } from './RankData';
+
+const getToken = () => {
+  return localStorage.getItem('token');
+};
 
 export default function Board() {
+  const token = getToken();
+
   const [period, setPeriod] = useState(0);
 
   const handleClick = (e) => {
     setPeriod(e.target.dataset.id);
   };
 
-  return (
-    <div className="board">
-      <h1 className="leaderboard"> Top Rankings</h1>
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      await fetch('/api/players/leaderboard', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => {
+          console.log(error);
+        });
+    };
 
-      <div className="duration">
-        <button onClick={handleClick} data-id="7">
+    fetchLeaderboard();
+  });
+
+  return (
+    <div className='board'>
+      <h1 className='leaderboard'> Top Rankings</h1>
+
+      <div className='duration'>
+        <button
+          onClick={handleClick}
+          data-id='7'>
           7 Days
         </button>
-        <button onClick={handleClick} data-id="30">
+        <button
+          onClick={handleClick}
+          data-id='30'>
           30 Days
         </button>
-        <button onClick={handleClick} data-id="0">
+        <button
+          onClick={handleClick}
+          data-id='0'>
           All-Time
         </button>
       </div>

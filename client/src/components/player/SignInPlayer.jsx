@@ -69,6 +69,8 @@ function SignInPlayer() {
           },
         ]);
 
+        localStorage.setItem('token', data.token);
+
         playGame('/Play');
       } else {
         setError('Incorrect login details. Please check.');

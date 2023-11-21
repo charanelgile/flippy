@@ -60,7 +60,7 @@ const Header = () => {
         )}
 
         <CustomLink
-          to='http://localhost:4000/player/ranking'
+          to='/Ranking'
           className='brand navlink'>
           Ranking
         </CustomLink>
