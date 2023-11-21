@@ -136,7 +136,13 @@ const loginPlayer = async (req, res) => {
   });
 };
 
+// Rank Players
+const rankPlayers = async (req, res) => {
+  res.send('Rank Players');
+};
+
 module.exports = {
   registerPlayer,
   loginPlayer,
+  rankPlayers,
 };

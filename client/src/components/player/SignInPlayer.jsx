@@ -128,7 +128,7 @@ function SignInPlayer() {
 
       {error && (
         <div>
-          <p className='text-danger text-center'>{error}</p>
+          <h4 className='text-danger text-center'>{error}</h4>
         </div>
       )}
 
