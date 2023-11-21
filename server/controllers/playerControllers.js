@@ -70,6 +70,8 @@ const registerPlayer = async (req, res) => {
 
   res.status(201).json({
     player: {
+      id: player._id,
+      email: player.email,
       codename: player.codename,
       firstname: player.firstname,
       lastname: player.lastname,
@@ -123,6 +125,8 @@ const loginPlayer = async (req, res) => {
 
   res.status(200).json({
     player: {
+      id: player._id,
+      email: player.email,
       codename: player.codename,
       firstname: player.firstname,
       lastname: player.lastname,

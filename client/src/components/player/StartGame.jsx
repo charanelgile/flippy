@@ -1,34 +1,39 @@
 // Library Imports
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 // Context Import
-import { CurrentSessionContext } from "../../contexts/CurrentSessionContext";
+import { CurrentSessionContext } from '../../contexts/CurrentSessionContext';
 
 // Custom Hook Import
-import useDeck from "../../hooks/useDeck";
+import useDeck from '../../hooks/useDeck';
 
 // Page & Component Import
-import CardsGrid from "./CardsGrid";
-import SaveHighScore from "./SaveHighScore";
+import CardsGrid from './CardsGrid';
+import SignInPlayer from './SignInPlayer';
+import SaveHighScore from './SaveHighScore';
 
 const StartGame = () => {
   const { currentSession } = useContext(CurrentSessionContext);
 
   const [minutes, seconds, deck, setDeck, startGame] = useDeck({
-    dimensions: currentSession[0].playerGridDimensions[0],
+    dimensions: currentSession
+      ? currentSession[0].playerGridDimensions[0]
+      : 'grid3x4',
   });
 
   return (
     <div>
-      {deck.length === 0 && currentSession[0].playerLevel < 9 ? (
+      {!currentSession ? (
+        <SignInPlayer />
+      ) : deck.length === 0 && currentSession[0].playerLevel < 9 ? (
         <div
-          id="containerStartGame"
-          className="d-flex justify-content-center align-items-center">
-          <section className="sectionStartGame d-flex flex-column bg-warning p-2 rounded">
+          id='containerStartGame'
+          className='d-flex justify-content-center align-items-center'>
+          <section className='sectionStartGame d-flex flex-column bg-warning p-2 rounded'>
             <button
-              className="btnStartGame btn btn-warning"
+              className='btnStartGame btn btn-warning'
               onClick={startGame}>
-              <p className="m-0 py-1 px-3 border border-3 rounded">
+              <p className='m-0 py-1 px-3 border border-3 rounded'>
                 Start Game
               </p>
             </button>
@@ -37,7 +42,7 @@ const StartGame = () => {
           </section>
         </div>
       ) : currentSession[0].playerGridDimensions.length !== 0 ? (
-        <div id="containerCardGrid">
+        <div id='containerCardGrid'>
           <CardsGrid
             minutes={minutes}
             seconds={seconds}
@@ -49,7 +54,7 @@ const StartGame = () => {
       ) : deck.length === 0 && currentSession[0].playerLevel > 8 ? (
         <SaveHighScore currentSession={currentSession[0]} />
       ) : (
-        ""
+        ''
       )}
     </div>
   );
