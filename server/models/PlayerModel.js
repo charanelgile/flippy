@@ -14,9 +14,9 @@ const PlayerSchema = new mongoose.Schema(
       required: [true, 'Please provide your Last Name'],
       minlength: 2,
     },
-    username: {
+    codename: {
       type: String,
-      required: [true, 'Please provide your Username'],
+      required: [true, 'Please provide your Code Name'],
       unique: true,
     },
     email: {
