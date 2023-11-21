@@ -3,7 +3,7 @@
   margin: 15px 10%;
   padding: 20px 30px;
   color: rgb(65, 65, 65);
-  background: url("../flippy-background-mono.jpg");
+  background: url('../flippy-background-mono.jpg');
   background-size: cover;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .textMechanics {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 600;
   margin-bottom: 20px !important;
 }
@@ -32,7 +32,8 @@
 }
 
 .textPoints {
-  color: rgb(225, 170, 20);
+  /* color: rgb(225, 170, 20); */
+  color: rgb(110, 55, 75);
   font-weight: bold;
 }
 
