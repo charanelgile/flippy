@@ -1,5 +1,10 @@
 import React, { useContext } from 'react';
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import {
+  Link,
+  useMatch,
+  useResolvedPath,
+  useNavigate,
+} from 'react-router-dom';
 
 import { CurrentSessionContext } from '../contexts/CurrentSessionContext';
 
@@ -19,7 +24,17 @@ function CustomLink({ to, children, ...props }) {
 }
 
 const Header = () => {
-  const { currentSession } = useContext(CurrentSessionContext);
+  let login = useNavigate();
+
+  const { currentSession, setCurrentSession } = useContext(
+    CurrentSessionContext
+  );
+
+  const handleLogout = () => {
+    setCurrentSession(null);
+
+    login('/SignInPlayer');
+  };
 
   return (
     <nav className='nav'>
@@ -52,7 +67,11 @@ const Header = () => {
 
         {currentSession && (
           <button className='brand btn'>
-            <h5 className='m-0'>Logout</h5>
+            <h5
+              className='m-0'
+              onClick={handleLogout}>
+              Logout
+            </h5>
           </button>
         )}
       </ul>
