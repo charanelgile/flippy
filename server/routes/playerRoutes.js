@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {
   registerPlayer,
   loginPlayer,
-  rankPlayers,
+  leaderboard,
 } = require('../controllers/playerControllers');
 const authentication = require('../middlewares/authentication');
 
@@ -13,6 +13,6 @@ router.post('/register', registerPlayer);
 router.post('/login', loginPlayer);
 
 // Rank Players
-router.get('/ranking', authentication, rankPlayers);
+router.get('/leaderboard', authentication, leaderboard);
 
 module.exports = router;

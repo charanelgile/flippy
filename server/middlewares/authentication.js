@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const authentication = async (req, res) => {
+const authentication = async (req, res, next) => {
   const authorizationHeader = req.headers.authorization;
 
   if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
@@ -17,10 +17,14 @@ const authentication = async (req, res) => {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
 
     req.player = {
-      playerID: payload._id,
-      playerEmail: payload.email,
+      playerID: payload.playerID,
+      playerEmail: payload.playerEmail,
     };
+
+    next();
   } catch (error) {
+    console.log(error);
+
     res.status(401).json({
       error: {
         message: 'Invalid credentials',

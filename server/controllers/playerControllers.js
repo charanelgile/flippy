@@ -136,13 +136,20 @@ const loginPlayer = async (req, res) => {
   });
 };
 
-// Rank Players
-const rankPlayers = async (req, res) => {
-  res.send('Rank Players');
+// Leaderboard
+const leaderboard = async (req, res) => {
+  const players = await Player.find()
+    .select('codename highscore')
+    .sort('-highscore');
+
+  res.status(200).json({
+    count: players.length,
+    players,
+  });
 };
 
 module.exports = {
   registerPlayer,
   loginPlayer,
-  rankPlayers,
+  leaderboard,
 };
