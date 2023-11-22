@@ -9,7 +9,7 @@
 }
 
 .logo {
-  font-family: "GAMERIA";
+  font-family: 'GAMERIA';
   height: 100%;
   font-size: 3rem;
   letter-spacing: 2px;
@@ -24,7 +24,7 @@
   display: flex;
   list-style: none;
   font-size: 1.35rem;
-  font-family: "Jungle Adventurer";
+  font-family: 'Jungle Adventurer';
 }
 
 .nav li.active {
@@ -45,6 +45,21 @@
   align-items: center;
   text-decoration: none;
   padding: 0.5rem 1rem;
+}
+
+.txtLogout {
+  padding: 10px;
+  border-radius: 5px;
+  color: rgb(243, 170, 12);
+  background-color: rgb(208, 13, 13);
+}
+
+.txtLogout:hover {
+  background-color: rgb(228, 25, 25);
+}
+
+.txtLogout:active {
+  background-color: rgb(184, 13, 13);
 }
 
 /***** Media Queries *****/
