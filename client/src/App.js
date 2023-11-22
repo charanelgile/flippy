@@ -8,7 +8,7 @@ import SignInPlayer from "./components/player/SignInPlayer";
 import SignUpPlayer from "./components/player/SignUpPlayer";
 import SignInAdmin from "./components/admin/SignInAdmin";
 import SignUpAdmin from "./components/admin/SignUpAdmin";
-import Board from "./components/rankTable/Board";
+import Leaderboard from "./pages/Leaderboard";
 import Mechanics from "./components/player/Mechanics";
 import StartGame from "./components/player/StartGame";
 
@@ -34,7 +34,7 @@ function App() {
 
             <Route path="/Play" element={<StartGame />} />
 
-            <Route path="/Ranking" element={<Board />} />
+            <Route path="/Ranking" element={<Leaderboard />} />
 
             <Route path="/SignInPlayer" element={<SignInPlayer />} />
 
