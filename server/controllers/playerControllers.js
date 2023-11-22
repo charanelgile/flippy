@@ -148,8 +148,33 @@ const leaderboard = async (req, res) => {
   });
 };
 
+// Save High Score
+const saveHighScore = async (req, res) => {
+  const {
+    body: { highscore },
+    params: { id: playerID },
+  } = req;
+
+  const player = await Player.findOne({ _id: playerID });
+
+  if (!player) {
+    return res.status(404).json({
+      error: {
+        message: 'Player not found',
+      },
+    });
+  }
+
+  player.highscore = highscore;
+
+  await player.save();
+
+  res.status(200).json(player);
+};
+
 module.exports = {
   registerPlayer,
   loginPlayer,
   leaderboard,
+  saveHighScore,
 };
