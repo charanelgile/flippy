@@ -13,9 +13,7 @@ const Leaderboard = () => {
   const [currentRank, setCurrentRank] = useState('');
   const [inTop10, setInTop10] = useState(false);
 
-  const { currentSession, setCurrentSession } = useContext(
-    CurrentSessionContext
-  );
+  const { currentSession } = useContext(CurrentSessionContext);
 
   const getCurrentRank = () => {
     return (

@@ -80,6 +80,8 @@ function SignUpPlayer() {
             },
           ]);
 
+          localStorage.setItem('token', data.token);
+
           playGame('/Play');
         } else {
           setError('Incorrect registration details. Please check.');
@@ -102,8 +104,7 @@ function SignUpPlayer() {
           <div className='d-flex justify-content-between mb-2'>
             <div className='w-100 me-2'>
               <label htmlFor='firstname'>
-                First Name:{' '}
-                <span className='text-danger fs-3 m-0 p-0'>*</span>
+                First Name: <span className='text-danger fs-3 m-0 p-0'>*</span>
               </label>
 
               <input
@@ -119,8 +120,7 @@ function SignUpPlayer() {
 
             <div className='w-100 ms-2'>
               <label htmlFor='lastname'>
-                Last Name:{' '}
-                <span className='text-danger fs-3 m-0 p-0'>*</span>
+                Last Name: <span className='text-danger fs-3 m-0 p-0'>*</span>
               </label>
 
               <input
@@ -137,8 +137,7 @@ function SignUpPlayer() {
 
           <div>
             <label htmlFor='codename'>
-              Code Name:{' '}
-              <span className='text-danger fs-3 m-0 p-0'>*</span>
+              Code Name: <span className='text-danger fs-3 m-0 p-0'>*</span>
             </label>
 
             <input
@@ -171,8 +170,7 @@ function SignUpPlayer() {
           <div className='d-flex justify-content-between mb-3'>
             <div className='w-100 me-2'>
               <label htmlFor='password'>
-                Password:{' '}
-                <span className='text-danger fs-3 m-0 p-0'>*</span>
+                Password: <span className='text-danger fs-3 m-0 p-0'>*</span>
               </label>
 
               <input
